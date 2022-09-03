@@ -1,3 +1,4 @@
+import reactotron from 'reactotron-react-native';
 import * as types from './constants'
 
 const initialState = {
@@ -5,7 +6,6 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-  console.log(`action: ${action.type}`);
   switch (action.type) {
     case types.REQUEST_LOGIN:
       return {
@@ -13,6 +13,13 @@ export default (state = initialState, action) => {
         authorized: true,
       };
     default:
+      if (!action.type.includes("@@redux")) {
+        reactotron.display({
+          name: "UNRECOGNIZED ACTION",
+          value: action,
+          important: true
+        });
+      };
       return state;
   }
 }
