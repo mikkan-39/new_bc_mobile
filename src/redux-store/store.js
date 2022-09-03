@@ -6,6 +6,7 @@ const store = configureStore({
   reducer: {
     session: sessionReducer,
   },
+  // for logging with reactotron
   enhancers: [reactotron.createEnhancer()]
 });
 

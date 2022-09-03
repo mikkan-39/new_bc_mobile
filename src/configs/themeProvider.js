@@ -3,6 +3,7 @@ import { Appearance, StatusBar } from "react-native";
 import { LIGHT_THEME, DARK_THEME } from "./styles";
 
 const Context = React.createContext({
+  //TODO: move Appearance here
   theme: LIGHT_THEME,
 });
 
