@@ -1,20 +1,20 @@
 import React from "react";
 import { Appearance, StatusBar } from "react-native";
+import reactotron from "reactotron-react-native";
 import { LIGHT_THEME, DARK_THEME } from "./styles";
 
+const initialScheme = Appearance.getColorScheme();
+const initialTheme = initialScheme == "light" ? LIGHT_THEME : DARK_THEME;
+
 const Context = React.createContext({
-  //TODO: move Appearance here
-  theme: LIGHT_THEME,
+  theme: initialTheme,
 });
 
 export const ThemeProvider = React.memo((props) => {
-  const initialScheme = Appearance.getColorScheme();
-  const initialTheme = initialScheme == 'light' ? LIGHT_THEME : DARK_THEME;
   const [theme, setTheme] = React.useState(initialTheme);
   StatusBar.setBarStyle(initialTheme.statusbar, true);
 
-  //TODO: should use useCallback ?
-  const ToggleThemeCallback = (event) => {
+  const ToggleThemeCallback = React.useCallback((event) => {
     setTheme((currentTheme) => {
       switch (event.colorScheme) {
         case 'light':
@@ -27,12 +27,12 @@ export const ThemeProvider = React.memo((props) => {
           return currentTheme;
       }
     });
-  };
+  }, []);
 
   Appearance.addChangeListener(ToggleThemeCallback);
 
   return (
-    //TODO: should use useMemo ?
+    // can use useMemo on theme if necessary
     <Context.Provider value={{ theme }}>
       {props.children}
     </Context.Provider>
