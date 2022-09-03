@@ -1,4 +1,3 @@
-# new_bc_mobile
 New_BC_Mobile
 =============
 .. is a rewrite of my main application. I hope to focus more on functional component and hooks, use reactive styles and optimize everything I can. 
