@@ -5,6 +5,7 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
+  console.log(`action: ${action.type}`);
   switch (action.type) {
     case types.REQUEST_LOGIN:
       return {
