@@ -1,7 +1,7 @@
 import React from "react";
 import { Appearance, StatusBar } from "react-native";
 import reactotron from "reactotron-react-native";
-import { LIGHT_THEME, DARK_THEME } from "./styles";
+import { LIGHT_THEME, DARK_THEME } from "./themesConstants";
 
 const initialScheme = Appearance.getColorScheme();
 const initialTheme = initialScheme == "light" ? LIGHT_THEME : DARK_THEME;
