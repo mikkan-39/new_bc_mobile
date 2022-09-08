@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loginComponent test should match snapshot 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#eee",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    onLayout={[Function]}
+    style={
+      [
+        {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "flex-start",
+        },
+        {
+          "paddingBottom": 0,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        {
+          "aspectRatio": 1,
+          "backgroundColor": "#fff",
+          "borderRadius": 30,
+          "flexShrink": 2,
+          "height": undefined,
+          "marginBottom": "10%",
+          "marginTop": "30%",
+          "maxWidth": 300,
+          "padding": 10,
+          "width": "50%",
+        }
+      }
+    >
+      <Image
+        source={
+          {
+            "testUri": "../../../src/assets/logo.png",
+          }
+        }
+        style={
+          {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+      />
+    </View>
+    <TextInput
+      style={
+        {
+          "backgroundColor": "#fff",
+          "borderRadius": 15,
+          "color": "#000",
+          "fontSize": 20,
+          "height": 50,
+          "marginTop": 25,
+          "maxWidth": 300,
+          "padding": 10,
+          "paddingHorizontal": 15,
+          "width": "75%",
+        }
+      }
+    />
+    <TextInput
+      secureTextEntry={true}
+      style={
+        {
+          "backgroundColor": "#fff",
+          "borderRadius": 15,
+          "color": "#000",
+          "fontSize": 20,
+          "height": 50,
+          "marginTop": 25,
+          "maxWidth": 300,
+          "padding": 10,
+          "paddingHorizontal": 15,
+          "width": "75%",
+        }
+      }
+    />
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#976dd7",
+          "borderRadius": 15,
+          "height": 50,
+          "justifyContent": "center",
+          "margin": 25,
+          "maxWidth": 200,
+          "opacity": 1,
+          "width": "50%",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#fff",
+            "fontSize": 24,
+          }
+        }
+      >
+        Login
+      </Text>
+    </View>
+  </View>
+</View>
+`;
