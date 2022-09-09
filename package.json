@@ -9,7 +9,10 @@
     "test": "jest --watchAll --verbose"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": [
+      "./__mocks__/mocks.js"
+    ]
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.12",

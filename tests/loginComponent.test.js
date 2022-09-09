@@ -1,16 +1,43 @@
 import * as React from 'react';
 import LoginComponent from '../src/components/loginComponent';
-import { myTestRenderer } from './myTestRenderer';
-import { render, screen, fireEvent } from '@testing-library/react-native';
+import { render, screen, fireEvent } from './myTestRenderer';
+import reactotron from 'reactotron-react-native';
+import { any } from 'react-native/Libraries/Text/TextNativeComponent';
 
 
 describe('loginComponent test', () => {
+	reactotron.log = () => { };
+
 	it('should match snapshot', () => {
-		const tree = myTestRenderer(<LoginComponent />)
-		expect(tree).toMatchSnapshot();
+		render(<LoginComponent />);
+		expect(screen.toJSON()).toMatchSnapshot();
 	});
 
-	it('should call callback on button press', () => {
-		// TODO:
+	it('should render username', async () => {
+		const expectedUsername = '123';
+		render(<LoginComponent/>);
+		fireEvent.changeText(screen.getByTestId('username'), expectedUsername);
+		expect(screen.getByDisplayValue(expectedUsername)).toBeTruthy()
+	});
+
+	it('should render password', async () => {
+		const expectedPassword = '321';
+		render(<LoginComponent/>);
+		fireEvent.changeText(screen.getByTestId('password'), expectedPassword);
+		expect(screen.getByDisplayValue(expectedPassword)).toBeTruthy()
+	});
+
+	it('should pass creds', async () => {
+		const mockFn = jest.fn();
+		const expectedUsername = '123';
+		const expectedPassword = '321'
+
+		render(<LoginComponent loginCallback={mockFn}/>);
+
+		fireEvent.changeText(screen.getByTestId('username'), expectedUsername);
+		fireEvent.changeText(screen.getByTestId('password'), expectedPassword);
+		fireEvent.press(screen.getByTestId('loginButton'));
+
+		expect(mockFn).toBeCalledWith({ username: expectedUsername, password: expectedPassword });
 	});
 });

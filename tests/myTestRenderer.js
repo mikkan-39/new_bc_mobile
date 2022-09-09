@@ -1,12 +1,21 @@
 import * as React from 'react';
-import renderer from 'react-test-renderer'; 
+import {render} from '@testing-library/react-native'
 import { ThemeProvider } from '../src/configs/themeProvider';
 
-// Needed to provide context for themes
-export const myTestRenderer = (child) => {
+// for testing library
+export const providers = ({children}) => {
     return (
-        renderer
-        .create(<ThemeProvider>{child}</ThemeProvider>)
-		.toJSON()
+            <ThemeProvider>
+                {children}
+            </ThemeProvider>
     )
 }
+
+const customRender = (ui, options) =>
+  render(ui, {wrapper: providers, ...options})
+
+// re-export
+export * from '@testing-library/react-native'
+
+//override render
+export {customRender as render}

@@ -55,6 +55,7 @@ exports[`loginComponent test should match snapshot 1`] = `
       />
     </View>
     <TextInput
+      onChangeText={[Function]}
       style={
         {
           "backgroundColor": "#fff",
@@ -69,8 +70,11 @@ exports[`loginComponent test should match snapshot 1`] = `
           "width": "75%",
         }
       }
+      testID="username"
+      value=""
     />
     <TextInput
+      onChangeText={[Function]}
       secureTextEntry={true}
       style={
         {
@@ -86,11 +90,13 @@ exports[`loginComponent test should match snapshot 1`] = `
           "width": "75%",
         }
       }
+      testID="password"
+      value=""
     />
     <View
       accessible={true}
       collapsable={false}
-      focusable={false}
+      focusable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -111,6 +117,7 @@ exports[`loginComponent test should match snapshot 1`] = `
           "width": "50%",
         }
       }
+      testID="loginButton"
     >
       <Text
         style={
