@@ -8,7 +8,7 @@ import LoginComponent from "./loginComponent";
 export default function LoginScreen(props) {
   reactotron.log("LoginScreen rendered");
   const dispatch = useDispatch();
-  const loginCallback = useCallback(() => dispatch(loginRequest()), [dispatch]);
+  const loginCallback = useCallback((creds) => dispatch(loginRequest(creds)), [dispatch]);
   const styles = themeAwareStyles();
   useEffect(() => {
     props.navigation.setOptions(styles.screenWithoutHeader);
@@ -16,7 +16,7 @@ export default function LoginScreen(props) {
 
   return (
     <LoginComponent 
-      props={ loginCallback }
+      loginCallback={loginCallback}
       />
   );
 }
