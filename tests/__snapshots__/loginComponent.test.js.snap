@@ -27,14 +27,23 @@ exports[`loginComponent test should match snapshot 1`] = `
     <View
       style={
         {
+          "flexShrink": 3,
+          "height": "15%",
+          "width": 10,
+        }
+      }
+    />
+    <View
+      style={
+        {
           "aspectRatio": 1,
           "backgroundColor": "#fff",
           "borderRadius": 30,
-          "flexShrink": 2,
+          "flexShrink": 1,
           "height": undefined,
-          "marginBottom": "10%",
-          "marginTop": "30%",
           "maxWidth": 300,
+          "minHeight": 100,
+          "minWidth": 100,
           "padding": 10,
           "width": "50%",
         }
@@ -54,6 +63,17 @@ exports[`loginComponent test should match snapshot 1`] = `
         }
       />
     </View>
+    <View
+      style={
+        {
+          "flexShrink": 5,
+          "height": 25,
+          "maxHeight": "15%",
+          "minHeight": 0,
+          "width": 10,
+        }
+      }
+    />
     <TextInput
       onChangeText={[Function]}
       style={

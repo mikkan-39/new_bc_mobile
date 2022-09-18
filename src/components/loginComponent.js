@@ -5,7 +5,8 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
-  Text
+  Text,
+  Platform
 } from "react-native";
 import { themeAwareStyles } from "../configs/themeAwareHook";
 const logo = require('../assets/logo.png')
@@ -25,12 +26,25 @@ export default function LoginComponent(props) {
     <View style={styles.defaultScreenBG}>
       <KeyboardAvoidingView
         style={styles.login.container}
-        behavior='padding'
-      >
+        behavior={
+          Platform.select({
+            ios: () => 'padding',
+            android: () => null
+          })()}
+        keyboardVerticalOffset={
+          Platform.select({
+            ios: () => 0,
+            android: () => -200
+          })()}
+      > 
+
+        <View style={styles.login.helperView}/>
 
         <View style={styles.login.imageContainer}>
           <Image style={styles.login.image} source={logo} />
         </View>
+
+        <View style={styles.login.helperView2}/>
 
         <TextInput
           testID="username"
