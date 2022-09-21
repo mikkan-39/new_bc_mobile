@@ -1,3 +1,4 @@
+import { NotUndefined } from "@redux-saga/types";
 import React, { useState, useCallback } from "react";
 import {
   View,
@@ -9,9 +10,14 @@ import {
   Platform
 } from "react-native";
 import { themeAwareStyles } from "../configs/themeAwareHook";
+import { loginCreds } from "../redux-store/constants";
 const logo = require('../assets/logo.png')
 
-export default function LoginComponent(props) {
+interface Props {
+  loginCallback: (arg0: loginCreds) => void;
+}
+
+export default function LoginComponent(props: Props) {
   const styles = themeAwareStyles();
   const [ username, setUsername ] = useState('')
   const [ password, setPassword ] = useState('')
@@ -26,16 +32,8 @@ export default function LoginComponent(props) {
     <View style={styles.defaultScreenBG}>
       <KeyboardAvoidingView
         style={styles.login.container}
-        behavior={
-          Platform.select({
-            ios: () => 'padding',
-            android: () => null
-          })()}
-        keyboardVerticalOffset={
-          Platform.select({
-            ios: () => 0,
-            android: () => -200
-          })()}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -200}
       > 
 
         <View style={styles.login.helperView}/>

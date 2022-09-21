@@ -1,6 +1,6 @@
 import * as types from './constants'
 
-export const loginRequest = (creds) => {
+export const loginRequest = (creds: types.loginCreds) => {
   return {
     type: types.REQUEST_LOGIN,
     payload: creds // { username: string, password: string }
@@ -13,7 +13,7 @@ export const loginSuccess = () => {
   }
 }
 
-export const loginFailed = (err) => {
+export const loginFailed = (err: Error) => {
   return {
     type: types.LOGIN_FAILED,
     payload: err
@@ -32,7 +32,7 @@ export const fetchConfigSuccess = () => {
   }
 }
 
-export const fetchConfigFailed = (err) => {
+export const fetchConfigFailed = (err: Error) => {
   return {
     type: types.FETCH_CONFIG_FAILED,
     payload: err

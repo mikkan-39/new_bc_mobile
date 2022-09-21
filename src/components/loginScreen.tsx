@@ -2,13 +2,16 @@ import React, { useCallback, useEffect } from "react";
 import { loginRequest } from "../redux-store/actions";
 import { useDispatch } from "react-redux";
 import { themeAwareStyles } from "../configs/themeAwareHook";
-import reactotron from "reactotron-react-native";
 import LoginComponent from "./loginComponent";
+import { loginCreds } from "../redux-store/constants";
 
-export default function LoginScreen(props) {
-  reactotron.log("LoginScreen rendered");
+interface Props {
+  navigation: any;
+}
+
+export default function LoginScreen(props: Props) {
   const dispatch = useDispatch();
-  const loginCallback = useCallback((creds) => dispatch(loginRequest(creds)), [dispatch]);
+  const loginCallback = useCallback((creds: loginCreds) => dispatch(loginRequest(creds)), [dispatch]);
   const styles = themeAwareStyles();
   useEffect(() => {
     props.navigation.setOptions(styles.screenWithoutHeader);
