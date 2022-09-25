@@ -1,6 +1,6 @@
 import * as types from './constants'
 
-export const loginRequest = (creds: types.loginCreds) => {
+export const loginRequest = (creds: types.Logincreds) => {
   return {
     type: types.REQUEST_LOGIN,
     payload: creds // { username: string, password: string }

@@ -6,7 +6,7 @@ export const FETCH_CONFIG_SUCCESS = 'FETCH_CONFIG_SUCCESS';
 export const FETCH_CONFIG_FAILED = 'FETCH_CONFIG_FAILED';
 
 
-export type loginCreds = {
+export type Logincreds = {
     username: string;
     password: string;
 }

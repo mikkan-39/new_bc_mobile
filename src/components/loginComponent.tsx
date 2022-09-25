@@ -10,11 +10,11 @@ import {
   Platform
 } from "react-native";
 import { themeAwareStyles } from "../configs/themeAwareHook";
-import { loginCreds } from "../redux-store/constants";
+import { Logincreds } from "../redux-store/constants";
 const logo = require('../assets/logo.png')
 
 interface Props {
-  loginCallback: (arg0: loginCreds) => void;
+  loginCallback: (arg0: Logincreds) => void;
 }
 
 export default function LoginComponent(props: Props) {
