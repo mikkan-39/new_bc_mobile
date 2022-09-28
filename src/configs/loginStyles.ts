@@ -1,4 +1,6 @@
-export const loginStyles = (theme) => {
+import { StyleObject, Theme } from "./themesConstants";
+
+export const loginStyles = (theme: Theme): StyleObject => {
   return {
     container: {
       flex: 1,

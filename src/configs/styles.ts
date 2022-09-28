@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 import { loginStyles } from "./loginStyles";
+import { StyleObject, Theme } from "./themesConstants";
 
-export const createStyles = (theme) => {
-  const styles = StyleSheet.create({
-    ...theme,
+export const createStyles = (theme: Theme): StyleObject => {
+  return {
     login: loginStyles(theme),
     defaultScreenBG: {
       flex: 1,
@@ -22,7 +22,5 @@ export const createStyles = (theme) => {
     screenWithoutHeader: {
       headerShown: false,
     },
-  });
-
-  return styles;
+  };
 };

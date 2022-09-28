@@ -1,3 +1,4 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import reactotron from 'reactotron-react-native';
 import * as types from './constants'
 
@@ -7,7 +8,7 @@ const initialState = {
   configured: false,
 }
 
-export default (state = initialState, action) => {
+export default (state = initialState, action: PayloadAction) => {
   switch (action.type) {
 
     case types.LOGIN_SUCCESS:
@@ -19,6 +20,8 @@ export default (state = initialState, action) => {
     case types.FETCH_CONFIG_FAILED:
       return { ...state, error: action.payload};
     
+    // these are for redux-saga, 
+    // which will call one of sagaFunctions.
     case types.FETCH_CONFIG_REQUEST:
     case types.REQUEST_LOGIN:
       return state;

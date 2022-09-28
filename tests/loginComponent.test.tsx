@@ -2,27 +2,26 @@ import * as React from 'react';
 import LoginComponent from '../src/components/loginComponent';
 import { render, screen, fireEvent } from './myTestRenderer';
 import reactotron from 'reactotron-react-native';
-import { any } from 'react-native/Libraries/Text/TextNativeComponent';
 
 
 describe('loginComponent test', () => {
 	reactotron.log = () => { };
 
 	it('should match snapshot', () => {
-		render(<LoginComponent />);
+		render(<LoginComponent loginCallback={()=>{}}/>);
 		expect(screen.toJSON()).toMatchSnapshot();
 	});
 
 	it('should render username', async () => {
 		const expectedUsername = '123';
-		render(<LoginComponent/>);
+		render(<LoginComponent loginCallback={()=>{}}/>);
 		fireEvent.changeText(screen.getByTestId('username'), expectedUsername);
 		expect(screen.getByDisplayValue(expectedUsername)).toBeTruthy()
 	});
 
 	it('should render password', async () => {
 		const expectedPassword = '321';
-		render(<LoginComponent/>);
+		render(<LoginComponent loginCallback={()=>{}}/>);
 		fireEvent.changeText(screen.getByTestId('password'), expectedPassword);
 		expect(screen.getByDisplayValue(expectedPassword)).toBeTruthy()
 	});
