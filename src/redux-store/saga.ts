@@ -4,6 +4,7 @@ import * as sagas from './sagaFunctions'
 
 
 function* mySaga() {
+    yield takeLatest(actionTypes.DEV_APP_INIT, sagas.devInit);
     yield takeLatest(actionTypes.REQUEST_LOGIN, sagas.login);
     yield takeLatest(actionTypes.LOGIN_SUCCESS, sagas.getMobileConfig)
 }

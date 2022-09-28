@@ -1,5 +1,11 @@
 import * as types from './constants'
 
+export const devAppInit = () => {
+  return {
+    type: types.DEV_APP_INIT
+  }
+}
+
 export const loginRequest = (creds: types.Logincreds) => {
   return {
     type: types.REQUEST_LOGIN,

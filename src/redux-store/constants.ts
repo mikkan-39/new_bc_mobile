@@ -4,7 +4,7 @@ export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const FETCH_CONFIG_REQUEST = 'FETCH_CONFIG_REQUEST';
 export const FETCH_CONFIG_SUCCESS = 'FETCH_CONFIG_SUCCESS';
 export const FETCH_CONFIG_FAILED = 'FETCH_CONFIG_FAILED';
-
+export const DEV_APP_INIT = 'DEV_APP_INIT'
 
 export type Logincreds = {
     username: string;

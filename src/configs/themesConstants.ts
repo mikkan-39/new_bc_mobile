@@ -8,9 +8,11 @@ interface HeaderStyle {
   headerShown?: boolean;
 }
 
-export interface StyleObject {
-  [propName: string]: ViewStyle | ImageStyle | TextStyle | HeaderStyle
-}
+// export interface StyleObject {
+//   [styleName: string]: {
+//     [propName: string]: ViewStyle | ImageStyle | TextStyle | HeaderStyle;
+//   };
+// }
 
 export interface Theme {
   id: string;
@@ -18,7 +20,7 @@ export interface Theme {
   onAccentColor: string;
   surfaceColor: string;
   backgroundColor: string;
-  statusbar: 'light-content' | 'dark-content';
+  statusbar: "light-content" | "dark-content";
   textColor: string;
   fontSize: number;
   rounding: number;

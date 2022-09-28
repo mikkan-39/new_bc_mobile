@@ -7,9 +7,7 @@ import mySaga from './saga'
 const sagaMiddleware = createSagaMiddleware()
 
 const store = configureStore({
-  reducer: {
-    session: sessionReducer,
-  },
+  reducer: sessionReducer,
   // for logging with reactotron
   enhancers: [reactotron.createEnhancer()],
   middleware: [sagaMiddleware]

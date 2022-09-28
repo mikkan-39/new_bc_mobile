@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 import { loginStyles } from "./loginStyles";
-import { StyleObject, Theme } from "./themesConstants";
+import { Theme } from "./themesConstants";
 
-export const createStyles = (theme: Theme): StyleObject => {
+export const createStyles = (theme: Theme) => {
   return {
     login: loginStyles(theme),
     defaultScreenBG: {

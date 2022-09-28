@@ -24,6 +24,7 @@ export default (state = initialState, action: PayloadAction) => {
     // which will call one of sagaFunctions.
     case types.FETCH_CONFIG_REQUEST:
     case types.REQUEST_LOGIN:
+    case types.DEV_APP_INIT:
       return state;
 
     default:
