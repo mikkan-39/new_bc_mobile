@@ -1,12 +1,13 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import reactotron from 'reactotron-react-native';
 import * as types from './constants'
+import { Androidconfig } from './helpers';
 
 const initialState = {
-  error: null,
+  error: new Error(),
   authorized: false,
   configured: false,
-  interfaceConfig: null,
+  interfaceConfig: {} as Androidconfig,
 }
 
 export default (state = initialState, action: PayloadAction) => {
@@ -16,11 +17,15 @@ export default (state = initialState, action: PayloadAction) => {
       return { ...state, authorized: true };
     case types.FETCH_CONFIG_SUCCESS:
       reactotron.log!(action.payload)
-      return { ...state, configured: true, interfaceConfig: action.payload };
+      return {
+        ...state,
+        configured: true,
+        interfaceConfig: action.payload as unknown as Androidconfig,
+      };
 
     case types.LOGIN_FAILED:
     case types.FETCH_CONFIG_FAILED:
-      return { ...state, error: action.payload};
+      return { ...state, error: action.payload as unknown as Error};
     
     // these are for redux-saga, 
     // which will call one of sagaFunctions.

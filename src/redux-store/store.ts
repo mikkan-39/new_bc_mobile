@@ -9,10 +9,12 @@ const sagaMiddleware = createSagaMiddleware()
 const store = configureStore({
   reducer: sessionReducer,
   // for logging with reactotron
-  enhancers: [reactotron.createEnhancer()],
+  enhancers: [reactotron.createEnhancer!()],
   middleware: [sagaMiddleware]
 });
 
 sagaMiddleware.run(mySaga)
 
 export default store;
+
+export type RootState = ReturnType<typeof store.getState>;
