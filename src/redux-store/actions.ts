@@ -1,5 +1,5 @@
 import * as types from './constants'
-import { Androidconfig } from './helpers'
+import { Androidconfig, Tableinconfig, TableResponse } from './helpers'
 
 export const devAppInit = () => {
   return {
@@ -46,3 +46,24 @@ export const fetchConfigFailed = (err: Error) => {
     payload: err
   }
 }
+
+export const fetchTableRequest = (table: Tableinconfig) => {
+  return {
+    type: types.FETCH_TABLE_REQUEST,
+    payload: table
+  }
+}
+
+export const fetchTableSuccess = (table: TableResponse) => {
+  return {
+    type: types.FETCH_TABLE_SUCCESS,
+    payload: table,
+  };
+};
+
+export const fetchTableFailed = (err: Error) => {
+  return {
+    type: types.FETCH_TABLE_FAILED,
+    payload: err,
+  };
+};

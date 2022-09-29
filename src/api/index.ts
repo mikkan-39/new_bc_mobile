@@ -1,5 +1,7 @@
 import axios, { AxiosError } from "axios";
+import reactotron from "reactotron-react-native";
 import { Logincreds } from "../redux-store/constants";
+import { Tableinconfig } from "../redux-store/helpers";
 const restURL = "http://nightly.claris.su/restservice.svc";
 const androidURL = "http://nightly.claris.su/androidservice.svc";
 
@@ -30,3 +32,28 @@ export const getConfig = async () =>
       "Content-Type": "application/json",
     },
   }).catch(onError);
+
+const api = axios.create({
+  baseURL: restURL,
+  headers: {
+    "Cache-Control": "no-cache",
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
+});
+
+export const setAuthHeader = (token: string) => {
+  api.defaults.headers.common[
+    "cookies"
+  ] = `ASP.NET_SessionId=${token}; path=/; HttpOnly`;
+};
+
+export const getSqlTable = async (table: Tableinconfig) => {
+  // reactotron.log!(table)
+  const { Table, Left, Right, Review, Field } = table;
+  return api.get(`/businessObject/${Table}/review/${Review}`, {
+    params: {
+      Field, Left, Right
+    }
+  });
+};

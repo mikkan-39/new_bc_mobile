@@ -1,5 +1,5 @@
 import reactotron from "reactotron-react-native";
-import { getConfig, loginRequest } from "../src/api";
+import { getConfig, getSqlTable, loginRequest } from "../src/api";
 
 describe("Requests tests", () => {
   it("should login", () => {
@@ -13,4 +13,16 @@ describe("Requests tests", () => {
       await getConfig();
     }).not.toThrowError();
   });
+
+  it("should get tables", () => {
+    expect(async () => {
+      await getSqlTable({
+        Field: "TaskDescription",
+        Left: "Data_zavershenija2086376608000",
+        Review: "rvTaskList",
+        Right: "TaskResponsible.Name",
+        Table: "tblTask",
+      });
+    }).not.toThrowError();
+  })
 });

@@ -5,7 +5,7 @@ import * as api from "../api";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import reactotron from "reactotron-react-native";
-import { androidConfigConverter } from "./helpers";
+import { androidConfigConverter, TableResponse } from "./helpers";
 
 const call: any = Effects.call; // for TS
 
@@ -25,6 +25,7 @@ export function* login(action: PayloadAction) {
       action.payload
     );
     const token = loginResponse.data as string;
+    api.setAuthHeader(token);
     yield put(actions.loginSuccess());
     yield put(actions.fetchConfigRequest());
   } catch (e: any) {
@@ -39,5 +40,19 @@ export function* getMobileConfig(action: PayloadAction) {
     yield put(actions.fetchConfigSuccess(config));
   } catch (e: any) {
     yield put(actions.fetchConfigFailed(e));
+  }
+}
+
+export function* getTable(action: PayloadAction) {
+  try {
+    const tableResponse: AxiosResponse = yield call(
+      api.getSqlTable,
+      action.payload
+    );
+    yield put(
+      actions.fetchTableSuccess(tableResponse.data as unknown as TableResponse)
+    );
+  } catch (e: any) {
+    yield put(actions.fetchTableFailed(e));
   }
 }
