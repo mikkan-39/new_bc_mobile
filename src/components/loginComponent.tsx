@@ -1,4 +1,3 @@
-import { NotUndefined } from "@redux-saga/types";
 import React, { useState, useCallback } from "react";
 import {
   View,
@@ -7,11 +6,13 @@ import {
   TouchableOpacity,
   TextInput,
   Text,
-  Platform
+  Platform,
+  StyleProp,
+  ImageStyle,
 } from "react-native";
 import { themeAwareStyles } from "../configs/themeAwareHook";
 import { Logincreds } from "../redux-store/constants";
-const logo = require('../assets/logo.png')
+const logo = require("../assets/logo.png");
 
 interface Props {
   loginCallback: (arg0: Logincreds) => void;
@@ -19,30 +20,33 @@ interface Props {
 
 export default function LoginComponent(props: Props) {
   const styles = themeAwareStyles();
-  const [ username, setUsername ] = useState('')
-  const [ password, setPassword ] = useState('')
-  
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const onLoginPress = () => {
     props.loginCallback({
-      username, password
-    })
+      username,
+      password,
+    });
   };
 
   return (
     <View style={styles.defaultScreenBG}>
       <KeyboardAvoidingView
         style={styles.login.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -200}
-      > 
-
-        <View style={styles.login.helperView}/>
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : -200}
+      >
+        <View style={styles.login.helperView} />
 
         <View style={styles.login.imageContainer}>
-          <Image style={styles.login.image} source={logo} />
+          <Image
+            style={styles.login.image as StyleProp<ImageStyle>}
+            source={logo}
+          />
         </View>
 
-        <View style={styles.login.helperView2}/>
+        <View style={styles.login.helperView2} />
 
         <TextInput
           testID="username"
@@ -66,7 +70,6 @@ export default function LoginComponent(props: Props) {
         >
           <Text style={styles.login.text}>Login</Text>
         </TouchableOpacity>
-
       </KeyboardAvoidingView>
     </View>
   );
