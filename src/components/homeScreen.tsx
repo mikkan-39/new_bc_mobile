@@ -4,7 +4,7 @@ import reactotron from "reactotron-react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux-store/store";
-import TabComponent from "./tabComponent";
+import TabScreen from "./tabScreen";
 
 interface Props {
   navigation: any;
@@ -24,7 +24,7 @@ export default function HomeScreen(props: Props) {
     var tabs: ReactNode[] = [];
     config.Tabs.forEach((tab, index) => {
       tabs.push(
-        <Tab.Screen name={tab.Name} component={TabComponent} key={index} />
+        <Tab.Screen name={tab.Name} component={TabScreen} key={index} />
       );
     });
     return tabs;

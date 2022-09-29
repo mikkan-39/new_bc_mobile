@@ -1,10 +1,12 @@
 import { StyleSheet } from "react-native";
 import { loginStyles } from "./loginStyles";
+import { tabStyles } from "./tabStyles";
 import { Theme } from "./themesConstants";
 
 export const createStyles = (theme: Theme) => {
   return {
     login: loginStyles(theme),
+    tabScreen: tabStyles(theme),
     defaultScreenBG: {
       flex: 1,
       backgroundColor: theme.backgroundColor,
@@ -21,6 +23,14 @@ export const createStyles = (theme: Theme) => {
     },
     screenWithoutHeader: {
       headerShown: false,
+    },
+    tabBar: {
+      tabBarStyle: {
+        backgroundColor: theme.surfaceColor,
+      },
+      tabBarLabelStyle: {
+        color: theme.textColor,
+      },
     },
   };
 };
