@@ -5,6 +5,7 @@ import * as api from "../api";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import reactotron from "reactotron-react-native";
+import { androidConfigConverter } from "./helpers";
 
 const call: any = Effects.call; // for TS
 
@@ -23,7 +24,7 @@ export function* login(action: PayloadAction) {
       api.loginRequest,
       action.payload
     );
-    reactotron.log!(loginResponse.data);
+    const token = loginResponse.data as string;
     yield put(actions.loginSuccess());
     yield put(actions.fetchConfigRequest());
   } catch (e: any) {
@@ -34,8 +35,8 @@ export function* login(action: PayloadAction) {
 export function* getMobileConfig(action: PayloadAction) {
   try {
     const configResponse: AxiosResponse = yield call(api.getConfig);
-    reactotron.log!(configResponse.data);
-    yield put(actions.fetchConfigSuccess());
+    const config = androidConfigConverter(configResponse.data);
+    yield put(actions.fetchConfigSuccess(config));
   } catch (e: any) {
     yield put(actions.fetchConfigFailed(e));
   }

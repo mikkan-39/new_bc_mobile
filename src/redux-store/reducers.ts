@@ -6,6 +6,7 @@ const initialState = {
   error: null,
   authorized: false,
   configured: false,
+  interfaceConfig: null,
 }
 
 export default (state = initialState, action: PayloadAction) => {
@@ -14,7 +15,8 @@ export default (state = initialState, action: PayloadAction) => {
     case types.LOGIN_SUCCESS:
       return { ...state, authorized: true };
     case types.FETCH_CONFIG_SUCCESS:
-      return { ...state, configured: true };
+      reactotron.log!(action.payload)
+      return { ...state, configured: true, interfaceConfig: action.payload };
 
     case types.LOGIN_FAILED:
     case types.FETCH_CONFIG_FAILED:

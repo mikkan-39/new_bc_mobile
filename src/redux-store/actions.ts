@@ -1,4 +1,5 @@
 import * as types from './constants'
+import { Androidconfig } from './helpers'
 
 export const devAppInit = () => {
   return {
@@ -32,9 +33,10 @@ export const fetchConfigRequest = () => {
   }
 }
 
-export const fetchConfigSuccess = () => {
+export const fetchConfigSuccess = (config: Androidconfig) => {
   return {
-    type: types.FETCH_CONFIG_SUCCESS
+    type: types.FETCH_CONFIG_SUCCESS,
+    payload: config
   }
 }
 
