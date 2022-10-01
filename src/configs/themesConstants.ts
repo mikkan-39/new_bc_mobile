@@ -19,11 +19,11 @@ export interface StyleStorage {
 
 export interface Theme {
   id: string;
-  accentColor: string;
-  onAccentColor: string;
-  surfaceColor: string;
-  backgroundColor: string;
-  statusbar: "light-content" | "dark-content";
+  accentColor: string; // bright, saturated
+  onAccentColor: string; // accentColor when selected
+  surfaceColor: string; // elements above page's background
+  backgroundColor: string; // page backgound
+  statusbar: "light-content" | "dark-content"; // statusbar mode
   textColor: string;
   fontSize: number;
   rounding: number;
