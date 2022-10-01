@@ -21,7 +21,6 @@ export default (state = initialState, action: PayloadAction) => {
     case types.LOGIN_SUCCESS:
       return { ...state, authorized: true };
     case types.FETCH_CONFIG_SUCCESS:
-      reactotron.log!(action.payload)
       return {
         ...state,
         configured: true,
