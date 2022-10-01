@@ -46,3 +46,9 @@ export interface TableResponse {
   Table: string;
   Set: TableTicket[];
 }
+
+export const stripHTML = (str: string): string => {
+  if (str === undefined) return "---";
+  var he = require("he"); // HTML decoder
+  return he.decode(str.replace(/<[^>]+>/g, "")).trim();
+};
