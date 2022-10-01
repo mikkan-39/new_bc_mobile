@@ -8,11 +8,14 @@ interface HeaderStyle {
   headerShown?: boolean;
 }
 
-// export interface StyleObject {
-//   [styleName: string]: {
-//     [propName: string]: ViewStyle | ImageStyle | TextStyle | HeaderStyle;
-//   };
-// }
+export interface StyleStorage {
+  [styleName: string]:
+    | StyleStorage
+    | ViewStyle
+    | ImageStyle
+    | TextStyle
+    | HeaderStyle;
+}
 
 export interface Theme {
   id: string;

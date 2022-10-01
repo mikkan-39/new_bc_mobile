@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { loginStyles } from "./loginStyles";
 import { tabStyles } from "./tabStyles";
-import { Theme } from "./themesConstants";
+import { StyleStorage, Theme } from "./themesConstants";
 
 export const createStyles = (theme: Theme) => {
   return {
@@ -32,5 +32,5 @@ export const createStyles = (theme: Theme) => {
         color: theme.textColor,
       },
     },
-  };
+  } as StyleStorage;
 };

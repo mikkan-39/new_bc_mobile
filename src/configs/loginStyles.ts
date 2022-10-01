@@ -1,10 +1,10 @@
 import React from "react";
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
-import { Theme } from "./themesConstants";
+import { StyleStorage, Theme } from "./themesConstants";
 
 export const loginStyles = (
   theme: Theme
-): { [styleName: string]: ViewStyle | TextStyle | ImageStyle } => {
+): StyleStorage => {
   return {
     container: {
       flex: 1,
