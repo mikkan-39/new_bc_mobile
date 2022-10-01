@@ -30,6 +30,9 @@ export default function TabScreen(props: Props) {
     dispatch(fetchTableRequest(parentTable))
   }, [styles]);
 
-  if (tableFromStorage === undefined) return null
-  return <TabComponent tableFromStorage={tableFromStorage}/>;
+  return (
+    <View style={styles.defaultScreenBG}>
+      <TabComponent tableFromStorage={tableFromStorage} />
+    </View>
+  );
 }

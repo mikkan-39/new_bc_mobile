@@ -4,7 +4,7 @@ import reactotron from "reactotron-react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux-store/store";
-import TabScreen from "./tabScreen";
+import TabScreen from "./tabScreen/tabScreen";
 
 interface Props {
   navigation: any;
@@ -24,14 +24,18 @@ export default function HomeScreen(props: Props) {
     var tabs: ReactNode[] = [];
     config.Tabs.forEach((tab, index) => {
       tabs.push(
-        <Tab.Screen name={tab.Name} component={TabScreen} key={index} />
+        <Tab.Screen
+          name={tab.Name}
+          component={TabScreen}
+          key={index}
+          initialParams={{ parentTable: tab }}
+        />
       );
     });
     return tabs;
   };
 
-  if (!config || !config.Tabs || config.Tabs.length == 0)
-    return null;
-  
+  if (!config || !config.Tabs || config.Tabs.length == 0) return null;
+
   return <Tab.Navigator>{generateTableTabs()}</Tab.Navigator>;
 }
