@@ -33,11 +33,11 @@ export const androidConfigConverter = (config: any) => {
 
 
 export interface TableTicket {
-  key: string;
-  left: string;
-  right: string;
-  name: string;
-  number: number;
+  Key: string;
+  Left: string;
+  Right: string;
+  Name: string;
+  Number: number;
 }
 
 export interface TableResponse {
