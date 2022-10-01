@@ -4,10 +4,10 @@ export interface Tableinconfig {
   Left: string; //|
   Right: string; //| required only for fetch request
   Review: string; //|
-  Number?: number;
-  Name?: string;
-  Parent?: string;
-  Editor?: Editorinconfig;
+  Number: number;
+  Name: string;
+  Parent: string;
+  Editor: Editorinconfig;
 }
 
 export interface Editorinconfig {

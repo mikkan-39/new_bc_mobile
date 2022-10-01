@@ -32,5 +32,5 @@ export const createStyles = (theme: Theme) => {
         color: theme.textColor,
       },
     },
-  } as StyleStorage;
+  };
 };

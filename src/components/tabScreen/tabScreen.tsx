@@ -30,6 +30,6 @@ export default function TabScreen(props: Props) {
     dispatch(fetchTableRequest(parentTable))
   }, [styles]);
 
-  reactotron.log!(tableFromStorage)
+  if (tableFromStorage === undefined) return null
   return <TabComponent tableFromStorage={tableFromStorage}/>;
 }

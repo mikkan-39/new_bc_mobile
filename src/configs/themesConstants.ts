@@ -1,20 +1,11 @@
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
-const defaultRounding = 15;
-
-interface HeaderStyle {
-  headerStyle?: any;
-  headerTintColor?: any;
-  headerShown?: boolean;
-}
-
 export interface StyleStorage {
   [styleName: string]:
     | StyleStorage
     | ViewStyle
     | ImageStyle
-    | TextStyle
-    | HeaderStyle;
+    | TextStyle;
 }
 
 export interface Theme {
@@ -29,6 +20,8 @@ export interface Theme {
   rounding: number;
 }
 
+const DEFAULT_ROUNDING = 15;
+
 export const LIGHT_THEME: Theme = {
   id: "default-light",
   accentColor: "#976dd7",
@@ -38,7 +31,7 @@ export const LIGHT_THEME: Theme = {
   statusbar: "dark-content",
   textColor: "#000",
   fontSize: 20,
-  rounding: defaultRounding,
+  rounding: DEFAULT_ROUNDING,
 };
 
 export const DARK_THEME: Theme = {
@@ -50,5 +43,5 @@ export const DARK_THEME: Theme = {
   statusbar: "light-content",
   textColor: "#fff",
   fontSize: 20,
-  rounding: defaultRounding,
+  rounding: DEFAULT_ROUNDING,
 };
