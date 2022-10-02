@@ -2,11 +2,13 @@ import { StyleSheet } from "react-native";
 import { loginStyles } from "./loginStyles";
 import { tabStyles } from "./tabStyles";
 import { StyleStorage, Theme } from "./themesConstants";
+import { updaterStyles } from "./updaterStyles";
 
 export const createStyles = (theme: Theme) => {
   return {
     login: loginStyles(theme),
     tabScreen: tabStyles(theme),
+    updater: updaterStyles(theme),
     defaultScreenBG: {
       flex: 1,
       backgroundColor: theme.backgroundColor,
