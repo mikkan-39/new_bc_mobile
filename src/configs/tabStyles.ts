@@ -25,8 +25,7 @@ export const tabStyles = (theme: Theme): StyleStorage => {
             },
             rightText: {
                 color: theme.textColor,
-                fontSize: theme.fontSize - 6,
-                alignSelf: "flex-end",
+                fontSize: theme.fontSize*0.75,
             },
         },
     };
