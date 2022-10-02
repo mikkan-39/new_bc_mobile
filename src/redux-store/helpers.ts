@@ -10,17 +10,19 @@ export interface Tableinconfig {
   Editor: Editorinconfig;
 }
 
+export interface UpdaterControl {
+  Key: string;
+  Label: string;
+  Number: 0;
+  Readonly: boolean;
+  Type: "BIGINT" | "TEXT" | "DATETIME" | "FILE" | "NUMERIC";
+}
+
 export interface Editorinconfig {
   Name: string;
   Table: string;
   Children: Tableinconfig[];
-  Controls: Array<{
-    Key: string;
-    Label: string;
-    Number: 0;
-    Readonly: boolean;
-    Type: "BIGINT" | "TEXT" | "DATETIME" | "FILE" | "NUMERIC";
-  }>;
+  Controls: UpdaterControl[];
 }
 
 export interface Androidconfig {
