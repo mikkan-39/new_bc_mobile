@@ -15,6 +15,7 @@ interface Props {
 export default function UpdaterScreen(props: Props) {
     const styles = themeAwareStyles();
     const config = useSelector((state: RootState) => state.interfaceConfig);
+    const dispatch = useDispatch();
     const ticket = props.route.params.ticket as TableTicket;
     reactotron.log!(ticket)
 

@@ -1,5 +1,5 @@
 import * as types from './constants'
-import { Androidconfig, Tableinconfig, TableResponse } from './helpers'
+import { Androidconfig, Logincreds, Tableinconfig, TableResponse, TableTicket } from './helpers'
 
 export const devAppInit = () => {
   return {
@@ -7,7 +7,7 @@ export const devAppInit = () => {
   }
 }
 
-export const loginRequest = (creds: types.Logincreds) => {
+export const loginRequest = (creds: Logincreds) => {
   return {
     type: types.REQUEST_LOGIN,
     payload: creds // { username: string, password: string }
@@ -64,6 +64,27 @@ export const fetchTableSuccess = (table: TableResponse) => {
 export const fetchTableFailed = (err: Error) => {
   return {
     type: types.FETCH_TABLE_FAILED,
+    payload: err,
+  };
+};
+
+export const fetchTicketRequest = (ticket: TableTicket) => {
+  return {
+    type: types.FETCH_TICKET_REQUEST,
+    payload: ticket
+  }
+}
+
+export const fetchTicketSuccess = (ticket: TableTicket) => {
+  return {
+    type: types.FETCH_TICKET_SUCCESS,
+    payload: ticket,
+  };
+};
+
+export const fetchTicketFailed = (err: Error) => {
+  return {
+    type: types.FETCH_TICKET_FAILED,
     payload: err,
   };
 };

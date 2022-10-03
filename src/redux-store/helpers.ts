@@ -54,3 +54,8 @@ export const stripHTML = (str: string): string => {
   var he = require("he"); // HTML decoder
   return he.decode(str.replace(/<[^>]+>/g, "")).trim();
 };
+
+export type Logincreds = {
+  username: string;
+  password: string;
+}

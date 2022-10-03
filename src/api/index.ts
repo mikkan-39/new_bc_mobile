@@ -1,7 +1,6 @@
 import axios, { AxiosError } from "axios";
 import reactotron from "reactotron-react-native";
-import { Logincreds } from "../redux-store/constants";
-import { Tableinconfig } from "../redux-store/helpers";
+import { Logincreds, Tableinconfig } from "../redux-store/helpers";
 const restURL = "http://nightly.claris.su/restservice.svc";
 const androidURL = "http://nightly.claris.su/androidservice.svc";
 

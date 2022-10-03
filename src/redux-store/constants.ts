@@ -8,8 +8,6 @@ export const DEV_APP_INIT = 'DEV_APP_INIT';
 export const FETCH_TABLE_REQUEST = "FETCH_TABLE_REQUEST";
 export const FETCH_TABLE_SUCCESS = "FETCH_TABLE_SUCCESS";
 export const FETCH_TABLE_FAILED = "FETCH_TABLE_FAILED";
-
-export type Logincreds = {
-    username: string;
-    password: string;
-}
+export const FETCH_TICKET_REQUEST = "FETCH_TICKET_REQUEST";
+export const FETCH_TICKET_SUCCESS = "FETCH_TICKET_SUCCESS";
+export const FETCH_TICKET_FAILED = "FETCH_TICKET_FAILED";

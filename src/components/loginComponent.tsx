@@ -11,7 +11,7 @@ import {
   ImageStyle,
 } from "react-native";
 import { themeAwareStyles } from "../configs/themeAwareHook";
-import { Logincreds } from "../redux-store/constants";
+import { Logincreds } from "../redux-store/helpers";
 const logo = require("../assets/logo.png");
 
 interface Props {

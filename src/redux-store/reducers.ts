@@ -1,10 +1,14 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import reactotron from 'reactotron-react-native';
 import * as types from './constants'
-import { Androidconfig, TableResponse } from './helpers';
+import { Androidconfig, TableResponse, TableTicket } from './helpers';
 
 interface TableStorage {
   [key: string]: TableResponse
+}
+
+interface TicketStorage {
+  [key: string]: TableTicket
 }
 
 const initialState = {
@@ -13,6 +17,7 @@ const initialState = {
   configured: false,
   interfaceConfig: {} as Androidconfig,
   tableStorage: {} as TableStorage,
+  ticketStorage: {} as TicketStorage,
 }
 
 export default (state = initialState, action: PayloadAction) => {
@@ -36,10 +41,21 @@ export default (state = initialState, action: PayloadAction) => {
           tableStorage
         };
       };
+    case types.FETCH_TICKET_SUCCESS: 
+      {
+        const ticket = action.payload as unknown as TableTicket;
+        const { ticketStorage } = state;
+        ticketStorage[ticket.Key] = ticket;
+        return {
+          ...state,
+          ticketStorage
+        }
+      }
 
     case types.LOGIN_FAILED:
     case types.FETCH_CONFIG_FAILED:
     case types.FETCH_TABLE_FAILED:
+    case types.FETCH_TICKET_FAILED:
       return { ...state, error: action.payload as unknown as Error};
     
     // these are for redux-saga, 
@@ -48,6 +64,7 @@ export default (state = initialState, action: PayloadAction) => {
     case types.REQUEST_LOGIN:
     case types.DEV_APP_INIT:
     case types.FETCH_TABLE_REQUEST:
+    case types.FETCH_TICKET_REQUEST:
       return state;
 
     default:

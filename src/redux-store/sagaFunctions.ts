@@ -56,3 +56,11 @@ export function* getTable(action: PayloadAction) {
     yield put(actions.fetchTableFailed(e));
   }
 }
+
+export function* getTicket(action: PayloadAction) {
+  try {
+    
+  } catch (error: any) {
+    yield put(actions.fetchTicketFailed(error));
+  }
+}

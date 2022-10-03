@@ -8,6 +8,7 @@ function* mySaga() {
     yield takeLatest(actionTypes.REQUEST_LOGIN, sagas.login);
     yield takeLatest(actionTypes.LOGIN_SUCCESS, sagas.getMobileConfig)
     yield takeEvery(actionTypes.FETCH_TABLE_REQUEST, sagas.getTable);
+    yield takeEvery(actionTypes.FETCH_TICKET_REQUEST, sagas.getTicket);
 }
 
 
