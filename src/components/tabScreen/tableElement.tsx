@@ -23,7 +23,7 @@ export default function TableElement(props: Props) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     const navigateToUpdater = useCallback(
       () => {
-        navigation.navigate("Updater", {})
+        navigation.navigate("Updater", { ticket })
       },
       [props, navigation],
     )
