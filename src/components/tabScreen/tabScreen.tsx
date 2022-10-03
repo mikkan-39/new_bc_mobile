@@ -32,7 +32,7 @@ export default function TabScreen(props: Props) {
 
   return (
     <View style={styles.defaultScreenBG}>
-      <TabComponent tableFromStorage={tableFromStorage} />
+      <TabComponent tableFromStorage={tableFromStorage} parentTable={parentTable} />
     </View>
   );
 }

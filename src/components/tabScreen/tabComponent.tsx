@@ -1,12 +1,13 @@
 import { ScrollView, View } from "react-native";
 import { ReactNode } from "react";
-import { TableResponse } from "../../redux-store/helpers";
+import { Tableinconfig, TableResponse, TicketForRequest } from "../../redux-store/helpers";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
 import TableElement from "./tableElement";
 import reactotron from "reactotron-react-native";
 
 interface Props {
-    tableFromStorage?: TableResponse
+    tableFromStorage: TableResponse
+    parentTable: Tableinconfig;
 }
 
 export default function TabComponent(props: Props) {
@@ -15,7 +16,9 @@ export default function TabComponent(props: Props) {
     const generateTickets = () => {
         let tabs: ReactNode[] = [];
         props.tableFromStorage!.Set.forEach((value, index) => {
-            tabs.push(<TableElement element={value} key={index}/>)
+            let ticket = value as TicketForRequest;
+            ticket.ParentTable = props.parentTable;
+            tabs.push(<TableElement element={ticket} key={index}/>)
         })
         return tabs
     }

@@ -42,6 +42,10 @@ export interface TableTicket {
   Number: number;
 }
 
+export interface TicketForRequest extends TableTicket{
+  ParentTable: Tableinconfig;
+}
+
 export interface TableResponse {
   Field: string;
   Review: string;

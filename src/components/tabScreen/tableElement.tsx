@@ -4,10 +4,10 @@ import { useCallback } from "react";
 import { Text, TouchableOpacity, View } from "react-native"
 import { themeAwareStyles } from "../../configs/themeAwareHook"
 import { StyleStorage } from "../../configs/themesConstants";
-import { stripHTML, TableTicket } from "../../redux-store/helpers"
+import { stripHTML, TicketForRequest } from "../../redux-store/helpers"
 
 interface Props {
-    element: TableTicket;
+    element: TicketForRequest;  // MUST have ParentTable
 }
 
 type RootStackParamList = {

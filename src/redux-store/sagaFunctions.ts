@@ -59,7 +59,9 @@ export function* getTable(action: PayloadAction) {
 
 export function* getTicket(action: PayloadAction) {
   try {
-    
+    const ticketResponse: AxiosResponse = yield call(api.getTicket, action.payload);
+    const ticketData = ticketResponse.data as any;
+    reactotron.log!(ticketData);
   } catch (error: any) {
     yield put(actions.fetchTicketFailed(error));
   }
