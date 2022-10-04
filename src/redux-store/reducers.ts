@@ -32,7 +32,6 @@ export default (state = initialState, action: PayloadAction) => {
         interfaceConfig: action.payload as unknown as Androidconfig,
       };
     case types.FETCH_TABLE_SUCCESS:
-    case types.FETCH_TABLES_FOR_TICKET_SUCCESS:
       {
         const table = action.payload as unknown as TableResponse;
         const { tableStorage } = state
@@ -65,8 +64,12 @@ export default (state = initialState, action: PayloadAction) => {
     case types.REQUEST_LOGIN:
     case types.DEV_APP_INIT:
     case types.FETCH_TABLE_REQUEST:
-    case types.FETCH_TICKET_REQUEST:
+    // case types.FETCH_TICKET_REQUEST: // this one's special
+    case types.FETCH_TABLES_FOR_TICKET_REQUEST:
       return state;
+    
+    case types.FETCH_TICKET_REQUEST:
+      return {...state, ticketStorage: {} as TableStorage}
 
     default:
       // redux may have called it's own actions,
