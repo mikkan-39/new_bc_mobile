@@ -24,11 +24,16 @@ export default function TabScreen(props: Props) {
   const dispatch = useDispatch();
   const tableFromStorage = useSelector((state: RootState) => state.tableStorage[parentTable.Table])
 
+  // navigation setting for navBar styling
   useEffect(() => {
     props.navigation.setOptions(styles.screenWithHeader);
     props.navigation.setOptions(styles.tabBar);
-    dispatch(fetchTableRequest(parentTable))
   }, [styles]);
+
+  // initial table request
+  useEffect(() => {
+    dispatch(fetchTableRequest(parentTable))
+  }, [])
 
   return (
     <View style={styles.defaultScreenBG}>
