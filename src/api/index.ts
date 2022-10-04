@@ -13,7 +13,7 @@ export const loginRequest = async (creds: Logincreds) =>
     url: `${restURL}/login`,
     method: "post",
     headers: {
-      Accept: "application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json",
     },
     data: {
@@ -27,7 +27,7 @@ export const getConfig = async () =>
     url: `${androidURL}/appconf`,
     method: "get",
     headers: {
-      Accept: "application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json",
     },
   }).catch(onError);
@@ -36,8 +36,10 @@ const api = axios.create({
   baseURL: restURL,
   headers: {
     "Cache-Control": "no-cache",
-    Accept: "application/json",
+    "Accept": "application/json",
     "Content-Type": "application/json",
+    "Connection": "Keep-Alive",
+    "Keep-Alive": "timeout=5, max=100"
   },
 });
 

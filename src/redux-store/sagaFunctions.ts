@@ -1,4 +1,4 @@
-import { put } from "redux-saga/effects";
+import { all, put } from "redux-saga/effects";
 import * as Effects from "redux-saga/effects";
 import * as actions from "./actions";
 import * as api from "../api";
@@ -6,6 +6,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import reactotron from "reactotron-react-native";
 import { androidConfigConverter, TableResponse, TicketLink, TicketResponse } from "./helpers";
+import { ensureLinkInStorage } from "./storage";
 
 const call: any = Effects.call; // for TS
 
@@ -61,21 +62,29 @@ export function* getTicket(action: PayloadAction) {
   try {
     const ticketResponse: AxiosResponse = yield call(api.getTicket, action.payload);
     const ticketData = ticketResponse.data as unknown as TicketResponse;
-    yield put(actions.fetchTicketSuccess(ticketData))    
+    yield put(actions.fetchTicketSuccess(ticketData))
   } catch (error: any) {
     yield put(actions.fetchTicketFailed(error));
   }
 }
 
+// !!! unlike getTable, this is intended only for ticket links,
+// because it saves those links (also those tables are cached in store)
 export function* getTablesForTickets(action: PayloadAction) {
+  // reactotron.log!(action.payload)
+  const links = action.payload as unknown as TicketLink[];
   try {
     // reactotron.log!(action.payload)
     const links = action.payload as unknown as TicketLink[];
     for (const link of links) {
       const response: AxiosResponse = yield call(api.getTicketTable, link);
-      yield put(actions.fetchTicketTablesSuccess(response.data));
+      yield put(actions.fetchTableSuccess(response.data));
     };
   } catch (error: any) {
-    yield put(actions.fetchTicketTablesFailed(error));
+    yield put(actions.fetchTableFailed(error));
   }
+  
+  links.forEach((link) => {
+    ensureLinkInStorage(link);
+  });
 }
