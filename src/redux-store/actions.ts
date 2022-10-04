@@ -88,3 +88,24 @@ export const fetchTicketFailed = (err: Error) => {
     payload: err,
   };
 };
+
+export const fetchTicketTablesRequest = (ticket: TicketResponse) => {
+  return {
+    type: types.FETCH_TABLES_FOR_TICKET_REQUEST,
+    payload: ticket
+  }
+}
+
+export const fetchTicketTablesSuccess = (tables: any) => {
+  return {
+    type: types.FETCH_TABLES_FOR_TICKET_SUCCESS,
+    payload: tables,
+  };
+};
+
+export const fetchTicketTablesFailed = (err: Error) => {
+  return {
+    type: types.FETCH_TABLES_FOR_TICKET_FAILED,
+    payload: err,
+  };
+};

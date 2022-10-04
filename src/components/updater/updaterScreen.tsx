@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import reactotron from "reactotron-react-native";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
-import { fetchTicketRequest } from "../../redux-store/actions";
+import { fetchTicketRequest, fetchTicketTablesRequest } from "../../redux-store/actions";
 import { TicketForRequest } from "../../redux-store/helpers";
 import { RootState } from "../../redux-store/store";
 import UpdaterComponent from "./updaterComponent";
@@ -18,7 +18,7 @@ export default function UpdaterScreen(props: Props) {
     const config = useSelector((state: RootState) => state.interfaceConfig);
     const dispatch = useDispatch();
     const ticket = props.route.params.ticket as TicketForRequest; // MUST have ParentTable
-    reactotron.log!(ticket)
+    // reactotron.log!(ticket)
     const ticketFromResponse = useSelector((state: RootState) => state.ticketStorage[ticket.Key])
 
     useEffect(() => {
@@ -28,6 +28,9 @@ export default function UpdaterScreen(props: Props) {
     }, [styles, dispatch, ticket]);
 
     useEffect(() => {
+        if (ticketFromResponse !== undefined) {
+            dispatch(fetchTicketTablesRequest(ticketFromResponse));
+        }
     }, [dispatch, ticketFromResponse])
     
     return (

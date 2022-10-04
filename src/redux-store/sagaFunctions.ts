@@ -66,3 +66,11 @@ export function* getTicket(action: PayloadAction) {
     yield put(actions.fetchTicketFailed(error));
   }
 }
+
+export function* getTablesForTickets(action: PayloadAction) {
+  try {
+    // reactotron.log!(action.payload)
+  } catch (error: any) {
+    yield put(actions.fetchTicketTablesFailed(error));
+  }
+}
