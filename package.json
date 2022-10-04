@@ -7,7 +7,8 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "win-sim": "cd /d C:\\Users\\%username%\\AppData\\Local\\Android\\sdk\\tools && emulator @Pixel_4_API_31",
-    "test": "jest --watchAll --verbose"
+    "test": "jest --watchAll --verbose",
+    "cloc-src": "cloc --exclude-dir=node_modules,dist,yarn.lock,package.json,package-lock.json --exclude-ext=md ."
   },
   "jest": {
     "preset": "react-native",
