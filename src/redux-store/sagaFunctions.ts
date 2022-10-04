@@ -5,7 +5,7 @@ import * as api from "../api";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import reactotron from "reactotron-react-native";
-import { androidConfigConverter, TableResponse } from "./helpers";
+import { androidConfigConverter, TableResponse, TicketResponse } from "./helpers";
 
 const call: any = Effects.call; // for TS
 
@@ -60,8 +60,8 @@ export function* getTable(action: PayloadAction) {
 export function* getTicket(action: PayloadAction) {
   try {
     const ticketResponse: AxiosResponse = yield call(api.getTicket, action.payload);
-    const ticketData = ticketResponse.data as any;
-    reactotron.log!(ticketData);
+    const ticketData = ticketResponse.data as unknown as TicketResponse;
+    yield put(actions.fetchTicketSuccess(ticketData))    
   } catch (error: any) {
     yield put(actions.fetchTicketFailed(error));
   }

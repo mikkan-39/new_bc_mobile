@@ -1,14 +1,14 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import reactotron from 'reactotron-react-native';
 import * as types from './constants'
-import { Androidconfig, TableResponse, TableTicket } from './helpers';
+import { Androidconfig, TableResponse, TicketResponse } from './helpers';
 
 interface TableStorage {
   [key: string]: TableResponse
 }
 
 interface TicketStorage {
-  [key: string]: TableTicket
+  [key: string]: TicketResponse
 }
 
 const initialState = {
@@ -43,9 +43,9 @@ export default (state = initialState, action: PayloadAction) => {
       };
     case types.FETCH_TICKET_SUCCESS: 
       {
-        const ticket = action.payload as unknown as TableTicket;
+        const ticket = action.payload as unknown as TicketResponse;
         const { ticketStorage } = state;
-        ticketStorage[ticket.Key] = ticket;
+        ticketStorage[ticket.Id] = ticket;
         return {
           ...state,
           ticketStorage

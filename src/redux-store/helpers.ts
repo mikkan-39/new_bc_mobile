@@ -1,6 +1,6 @@
 export interface Tableinconfig {
   Field: string;
-  Table: string; //|
+  Table: string; //| tbl...
   Left: string; //|
   Right: string; //| required only for fetch request
   Review: string; //|
@@ -42,14 +42,14 @@ export interface TableTicket {
   Number: number;
 }
 
-export interface TicketForRequest extends TableTicket{
+export interface TicketForRequest extends TableTicket {
   ParentTable: Tableinconfig;
 }
 
 export interface TableResponse {
   Field: string;
   Review: string;
-  Table: string;
+  Table: string; // tbl...
   Set: TableTicket[];
 }
 
@@ -62,4 +62,27 @@ export const stripHTML = (str: string): string => {
 export type Logincreds = {
   username: string;
   password: string;
+}
+
+export interface TicketAttribute {
+  Name: string;
+  Type: "BIGINT" | "TEXT" | "DATETIME"
+  | "FILE" | "NUMERIC" | "GUID" | "VARCHAR"
+  | "DECIMAL" | "SMALLDATETIME" | "BIT";
+  Value: number
+}
+
+export interface TicketLink {
+  Id: number;
+  Name: string; // internal
+  ParentTable: string; // tbl...
+  Value: string; // russian
+
+}
+
+export interface TicketResponse {
+  Attributes: TicketAttribute[];
+  Id: number;
+  Table: string; // tbl...
+  Links: TicketLink[];
 }

@@ -19,6 +19,7 @@ export default function UpdaterScreen(props: Props) {
     const dispatch = useDispatch();
     const ticket = props.route.params.ticket as TicketForRequest; // MUST have ParentTable
     reactotron.log!(ticket)
+    const ticketFromResponse = useSelector((state: RootState) => state.ticketStorage[ticket.Key])
 
     useEffect(() => {
         props.navigation.setOptions(styles.screenWithHeader);
@@ -26,6 +27,9 @@ export default function UpdaterScreen(props: Props) {
         dispatch(fetchTicketRequest(ticket))
     }, [styles, dispatch, ticket]);
 
+    useEffect(() => {
+    }, [dispatch, ticketFromResponse])
+    
     return (
         <UpdaterComponent/>
     )

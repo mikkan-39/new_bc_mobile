@@ -1,5 +1,5 @@
 import * as types from './constants'
-import { Androidconfig, Logincreds, Tableinconfig, TableResponse, TableTicket, TicketForRequest } from './helpers'
+import { Androidconfig, Logincreds, Tableinconfig, TableResponse, TableTicket, TicketForRequest, TicketResponse } from './helpers'
 
 export const devAppInit = () => {
   return {
@@ -75,7 +75,7 @@ export const fetchTicketRequest = (ticket: TicketForRequest) => {
   }
 }
 
-export const fetchTicketSuccess = (ticket: TableTicket) => {
+export const fetchTicketSuccess = (ticket: TicketResponse) => {
   return {
     type: types.FETCH_TICKET_SUCCESS,
     payload: ticket,
