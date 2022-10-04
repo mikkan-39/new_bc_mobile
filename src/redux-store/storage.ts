@@ -2,11 +2,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import reactotron from 'reactotron-react-native';
 import { TicketLink } from './helpers';
 
+export interface LinkStorage {
+    [name: string]: string;
+}
 
 export const getLinksFromStorage = async () => {
-    interface LinkStorage {
-        [name: string]: string;
-    }
     try {
         let res = await AsyncStorage.getItem('@bcm.linkStorage');
         return (res != null ? JSON.parse(res) : {}) as LinkStorage;

@@ -48,8 +48,6 @@ export default function UpdaterScreen(props: Props) {
                 const x = editor.Controls.filter((control) => control.Key == link.Name)
                 return (x.length == 1) && !(link.ParentTable in tablesInStorage)
             })
-            reactotron.log!(tablesInStorage)
-            reactotron.log!(necessaryLinks)
             if(necessaryLinks.length)
                 dispatch(fetchTicketTablesRequest(necessaryLinks));
         }
