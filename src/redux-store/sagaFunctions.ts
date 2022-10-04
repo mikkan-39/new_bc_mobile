@@ -5,7 +5,7 @@ import * as api from "../api";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import reactotron from "reactotron-react-native";
-import { androidConfigConverter, TableResponse, TicketResponse } from "./helpers";
+import { androidConfigConverter, TableResponse, TicketLink, TicketResponse } from "./helpers";
 
 const call: any = Effects.call; // for TS
 
@@ -70,6 +70,11 @@ export function* getTicket(action: PayloadAction) {
 export function* getTablesForTickets(action: PayloadAction) {
   try {
     // reactotron.log!(action.payload)
+    const links = action.payload as unknown as TicketLink[];
+    for (const link of links) {
+      const response: AxiosResponse = yield call(api.getTicketTable, link);
+      yield put(actions.fetchTicketTablesSuccess(response.data));
+    };
   } catch (error: any) {
     yield put(actions.fetchTicketTablesFailed(error));
   }

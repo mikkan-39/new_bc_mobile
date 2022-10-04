@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import reactotron from "reactotron-react-native";
-import { Logincreds, Tableinconfig, TicketForRequest } from "../redux-store/helpers";
+import { Logincreds, Tableinconfig, TicketForRequest, TicketLink } from "../redux-store/helpers";
 const restURL = "http://nightly.claris.su/restservice.svc";
 const androidURL = "http://nightly.claris.su/androidservice.svc";
 
@@ -59,4 +59,8 @@ export const getSqlTable = async (table: Tableinconfig) => {
 
 export const getTicket = async (ticket: TicketForRequest) => {
   return api.get(`/businessObject/${ticket.ParentTable.Table}/${ticket.Key}`)
+}
+
+export const getTicketTable = async (table: TicketLink) => {
+  return api.get(`/businessObject/${table.ParentTable}`)
 }

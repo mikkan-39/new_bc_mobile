@@ -32,6 +32,7 @@ export default (state = initialState, action: PayloadAction) => {
         interfaceConfig: action.payload as unknown as Androidconfig,
       };
     case types.FETCH_TABLE_SUCCESS:
+    case types.FETCH_TABLES_FOR_TICKET_SUCCESS:
       {
         const table = action.payload as unknown as TableResponse;
         const { tableStorage } = state
