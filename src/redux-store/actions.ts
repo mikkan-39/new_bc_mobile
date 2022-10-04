@@ -95,3 +95,9 @@ export const fetchTicketTablesRequest = (links: TicketLink[]) => {
     payload: links
   }
 }
+
+export const clearTicketStorage = () => {
+  return {
+    type: types.CLEAR_TICKET_STORAGE
+  }
+}

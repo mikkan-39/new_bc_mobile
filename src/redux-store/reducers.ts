@@ -64,12 +64,12 @@ export default (state = initialState, action: PayloadAction) => {
     case types.REQUEST_LOGIN:
     case types.DEV_APP_INIT:
     case types.FETCH_TABLE_REQUEST:
-    // case types.FETCH_TICKET_REQUEST: // this one's special
+    case types.FETCH_TICKET_REQUEST:
     case types.FETCH_TABLES_FOR_TICKET_REQUEST:
       return state;
     
-    case types.FETCH_TICKET_REQUEST:
-      return {...state, ticketStorage: {} as TableStorage}
+    case types.CLEAR_TICKET_STORAGE:
+      return { ...state, ticketStorage: {} as TicketStorage}
 
     default:
       // redux may have called it's own actions,

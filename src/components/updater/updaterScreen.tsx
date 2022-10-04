@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import reactotron from "reactotron-react-native";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
-import { fetchTicketRequest, fetchTicketTablesRequest } from "../../redux-store/actions";
+import { clearTicketStorage, fetchTicketRequest, fetchTicketTablesRequest } from "../../redux-store/actions";
 import { TicketForRequest } from "../../redux-store/helpers";
 import { RootState } from "../../redux-store/store";
 import UpdaterComponent from "./updaterComponent";
@@ -35,15 +35,25 @@ export default function UpdaterScreen(props: Props) {
     }, [styles])
 
     // fetching necessary tables for updater
-    useEffect(() => {
+    // not on first render
+    const tablesInStorage = useSelector((state: RootState) => state.tableStorage);
+    const firstUpdate = useRef(true);
+    useLayoutEffect(() => {
+        if (firstUpdate.current) {
+            firstUpdate.current = false;
+            return;
+        }
         if (ticketFromResponse !== undefined) {
             const necessaryLinks = ticketFromResponse.Links.filter((link) => {
                 const x = editor.Controls.filter((control) => control.Key == link.Name)
-                return x.length == 1
+                return (x.length == 1) && !(link.ParentTable in tablesInStorage)
             })
-            dispatch(fetchTicketTablesRequest(necessaryLinks));
+            reactotron.log!(tablesInStorage)
+            reactotron.log!(necessaryLinks)
+            if(necessaryLinks.length)
+                dispatch(fetchTicketTablesRequest(necessaryLinks));
         }
-    }, [ticketFromResponse])
+    }, [ticketFromResponse]); // tablesInStorage intentionally not in here.
     
     return (
         <UpdaterComponent/>
