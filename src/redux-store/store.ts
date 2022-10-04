@@ -4,7 +4,7 @@ import reactotron from '../../ReactotronConfig';
 import createSagaMiddleware from 'redux-saga'
 import mySaga from './saga'
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware({sagaMonitor: reactotron.createSagaMonitor!()})
 
 const store = configureStore({
   reducer: sessionReducer,

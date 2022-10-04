@@ -1,6 +1,7 @@
 import Reactotron from "reactotron-react-native";
 import { reactotronRedux } from 'reactotron-redux'
 import { NativeModules } from "react-native";
+import sagaPlugin from 'reactotron-redux-saga';
 
 let packagerHostname = "localhost";
 if (__DEV__) {
@@ -19,6 +20,7 @@ const reactotron = Reactotron.configure({
     overlay: false, // just turning off overlay
   })
   .use(reactotronRedux())
+  .use(sagaPlugin())
   .connect();
 
 export default reactotron;
