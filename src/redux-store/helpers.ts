@@ -43,7 +43,9 @@ export interface TableTicket {
 }
 
 export interface TicketForRequest extends TableTicket {
-  ParentTable: Tableinconfig;
+  ParentTable: {
+    Table: string; // tbl...
+  };
 }
 
 export interface TableResponse {

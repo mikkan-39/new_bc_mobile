@@ -32,6 +32,8 @@ export const ensureLinkInStorage = async (link: TicketLink) => {
         const storage = await getLinksFromStorage();
         if (storage[link.Name] == undefined) {
             addLinkToStorage(link);
+        } else if (storage[link.Name] != link.ParentTable) {
+            addLinkToStorage(link);
         }
     } catch (e) {
         // error reading value
