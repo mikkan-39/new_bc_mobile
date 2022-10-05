@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import store from "./src/redux-store/store";
 import { ThemeProvider } from "./src/configs/themeProvider";
 import { LIGHT_THEME, DARK_THEME } from "./src/configs/styles";
-import { devAppInit } from "./src/redux-store/actions";
+import { clearAsyncStorage, devAppInit } from "./src/redux-store/actions";
 
 if (__DEV__) {
   import("./ReactotronConfig").then(() => console.log("Reactotron Configured"));
@@ -14,6 +14,7 @@ if (__DEV__) {
 export default function App() {
   useEffect(() => {
     if (__DEV__) {
+      // store.dispatch(clearAsyncStorage());
       store.dispatch(devAppInit());
     }
   });

@@ -101,3 +101,9 @@ export const clearTicketStorage = () => {
     type: types.CLEAR_TICKET_STORAGE
   }
 }
+
+export const clearAsyncStorage = () => {
+  return {
+    type: types.CLEAR_ASYNC_STORAGE
+  }
+}

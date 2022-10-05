@@ -66,6 +66,7 @@ export default (state = initialState, action: PayloadAction) => {
     case types.FETCH_TABLE_REQUEST:
     case types.FETCH_TICKET_REQUEST:
     case types.FETCH_TABLES_FOR_TICKET_REQUEST:
+    case types.CLEAR_ASYNC_STORAGE:
       return state;
     
     case types.CLEAR_TICKET_STORAGE:

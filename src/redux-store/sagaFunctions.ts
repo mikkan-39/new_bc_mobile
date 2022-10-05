@@ -6,7 +6,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import reactotron from "reactotron-react-native";
 import { Androidconfig, androidConfigConverter, TableResponse, TicketLink, TicketResponse } from "./helpers";
-import { ensureLinkInStorage, getLinksFromStorage, LinkStorage } from "./storage";
+import { clearStorage, ensureLinkInStorage, getLinksFromStorage, LinkStorage } from "./storage";
 import { RootState } from "./store";
 
 const call: any = Effects.call; // for TS
@@ -111,4 +111,8 @@ export function* preventiveTablesFetch(action: PayloadAction) {
   } catch (error: any) {
     yield put(actions.fetchTableFailed(error));
   }
+}
+
+export function* clearStorageSaga(action: PayloadAction) {
+  yield call(clearStorage);
 }

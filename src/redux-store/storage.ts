@@ -37,3 +37,8 @@ export const ensureLinkInStorage = async (link: TicketLink) => {
         // error reading value
     }
 }
+
+export const clearStorage = async () => {
+    reactotron.log!('CLEARING STORAGE')
+    return AsyncStorage.clear()
+}

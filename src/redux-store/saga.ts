@@ -11,6 +11,7 @@ function* mySaga() {
     yield takeEvery(actionTypes.FETCH_TICKET_REQUEST, sagas.getTicket);
     yield takeEvery(actionTypes.FETCH_TABLES_FOR_TICKET_REQUEST, sagas.getTablesForTickets);
     yield takeLatest(actionTypes.FETCH_CONFIG_SUCCESS, sagas.preventiveTablesFetch);
+    yield takeEvery(actionTypes.CLEAR_ASYNC_STORAGE, sagas.clearStorageSaga);
 }
 
 
