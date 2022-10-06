@@ -14,8 +14,8 @@ const call: any = Effects.call; // for TS
 export function* devInit(action: PayloadAction) {
   yield put(
     actions.loginRequest({
-      username: "mbs",
-      password: "1qaz!QAZ",
+      username: "12345678",
+      password: "1234567",
     })
   );
 }

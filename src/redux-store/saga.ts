@@ -1,5 +1,6 @@
 import { takeEvery, takeLatest } from 'redux-saga/effects'
 import * as actionTypes from './constants';
+import { experementalPreventiveTablesFetch } from './crazyTicketSaga';
 import * as sagas from './sagaFunctions'
 
 
@@ -10,6 +11,7 @@ function* mySaga() {
     yield takeEvery(actionTypes.FETCH_TABLE_REQUEST, sagas.getTable);
     yield takeEvery(actionTypes.FETCH_TICKET_REQUEST, sagas.getTicket);
     yield takeEvery(actionTypes.FETCH_TABLES_FOR_TICKET_REQUEST, sagas.getTablesForTickets);
+    // yield takeLatest(actionTypes.FETCH_CONFIG_SUCCESS, experementalPreventiveTablesFetch);
     yield takeLatest(actionTypes.FETCH_CONFIG_SUCCESS, sagas.preventiveTablesFetch);
     yield takeEvery(actionTypes.CLEAR_ASYNC_STORAGE, sagas.clearStorageSaga);
 }

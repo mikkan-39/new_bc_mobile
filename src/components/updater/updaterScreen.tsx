@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
+import { View } from "react-native";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import reactotron from "reactotron-react-native";
@@ -54,6 +55,8 @@ export default function UpdaterScreen(props: Props) {
     }, [ticketFromResponse]); // tablesInStorage intentionally not in here.
     
     return (
-        <UpdaterComponent/>
+        <View style={styles.defaultScreenBG}>
+            <UpdaterComponent ticket={ticketFromResponse} editor={editor} />
+        </View>
     )
 }

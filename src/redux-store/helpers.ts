@@ -18,6 +18,10 @@ export interface UpdaterControl {
   Type: "BIGINT" | "TEXT" | "DATETIME" | "FILE" | "NUMERIC";
 }
 
+export interface ExtendedControl extends UpdaterControl {
+  Table?: TableResponse
+}
+
 export interface Editorinconfig {
   Name: string;
   Table: string;

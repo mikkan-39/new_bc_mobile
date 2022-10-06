@@ -38,17 +38,18 @@ export default (state = initialState, action: PayloadAction) => {
         tableStorage[table.Table] = table
         return {
           ...state,
-          tableStorage
+          tableStorage: {...tableStorage}
         };
       };
     case types.FETCH_TICKET_SUCCESS: 
       {
         const ticket = action.payload as unknown as TicketResponse;
-        const { ticketStorage } = state;
+        let { ticketStorage } = state;
+        ticketStorage = {};
         ticketStorage[ticket.Id] = ticket;
         return {
           ...state,
-          ticketStorage
+          ticketStorage: {...ticketStorage}
         }
       }
 
