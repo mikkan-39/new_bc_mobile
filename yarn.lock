@@ -2199,6 +2199,21 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-native-vector-icons@^6.4.5":
+  version "6.4.12"
+  resolved "https://registry.yarnpkg.com/@types/react-native-vector-icons/-/react-native-vector-icons-6.4.12.tgz#4b9c63bf85eb42fca7c5b0a55ec317900e4fb427"
+  integrity sha512-gSXtv3NMOsRwSXJ/gvGebm7CNjHbkeFKCse9h/Pvi+x2yjCLOkJR1FBfec06DhaFJpsK7Y8WRQpwOS0eLqx5Rg==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
+"@types/react-native@*":
+  version "0.70.4"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.70.4.tgz#316f0e9b4b51bbe5cecf09284555f01283afe3b2"
+  integrity sha512-z5tKfblHLG6jts2AQcioDw4N+F2EzflO9n495yNyqyMYRkSIVTLX64MHBeqMp5wfOY5mshy0GsOgnFSXrXKQSg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-native@^0.70.3":
   version "0.70.3"
   resolved "https://registry.npmjs.org/@types/react-native/-/react-native-0.70.3.tgz"
@@ -6735,6 +6750,13 @@ react-native-screens@~3.15.0:
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
+
+react-native-textinput-effects@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/react-native-textinput-effects/-/react-native-textinput-effects-0.6.3.tgz#dcfb273d2b04235f308216d06a965ac1746a66f2"
+  integrity sha512-WGLKR0cshSRTS2+65WFfHmU26UHKoNQQzqe1H1agUSiO3WUJvKTLGZu6DMrwLko90tjuWt2RQsXINs6iFFe2mg==
+  dependencies:
+    "@types/react-native-vector-icons" "^6.4.5"
 
 react-native-typescript-transformer@^1.2.13:
   version "1.2.13"
