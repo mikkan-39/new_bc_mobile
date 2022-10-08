@@ -19,7 +19,7 @@ export interface UpdaterControl {
 }
 
 export interface ExtendedControl extends UpdaterControl {
-  Table?: TableResponse
+  TableLink?: string;
 }
 
 export interface Editorinconfig {
@@ -47,9 +47,7 @@ export interface TableTicket {
 }
 
 export interface TicketForRequest extends TableTicket {
-  ParentTable: {
-    Table: string; // tbl...
-  };
+  ParentTable: Tableinconfig;
 }
 
 export interface TableResponse {
@@ -75,7 +73,7 @@ export interface TicketAttribute {
   Type: "BIGINT" | "TEXT" | "DATETIME"
   | "FILE" | "NUMERIC" | "GUID" | "VARCHAR"
   | "DECIMAL" | "SMALLDATETIME" | "BIT";
-  Value: number
+  Value: any;
 }
 
 export interface TicketLink {

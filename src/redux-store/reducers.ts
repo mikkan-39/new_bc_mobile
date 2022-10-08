@@ -7,17 +7,13 @@ interface TableStorage {
   [key: string]: TableResponse
 }
 
-interface TicketStorage {
-  [key: string]: TicketResponse
-}
-
 const initialState = {
   error: new Error(),
   authorized: false,
   configured: false,
   interfaceConfig: {} as Androidconfig,
   tableStorage: {} as TableStorage,
-  ticketStorage: {} as TicketStorage,
+  ticketStorage: null as TicketResponse | null,
 }
 
 export default (state = initialState, action: PayloadAction) => {
@@ -44,12 +40,9 @@ export default (state = initialState, action: PayloadAction) => {
     case types.FETCH_TICKET_SUCCESS: 
       {
         const ticket = action.payload as unknown as TicketResponse;
-        let { ticketStorage } = state;
-        ticketStorage = {};
-        ticketStorage[ticket.Id] = ticket;
         return {
           ...state,
-          ticketStorage: {...ticketStorage}
+          ticketStorage: ticket
         }
       }
 
@@ -65,13 +58,13 @@ export default (state = initialState, action: PayloadAction) => {
     case types.REQUEST_LOGIN:
     case types.DEV_APP_INIT:
     case types.FETCH_TABLE_REQUEST:
-    case types.FETCH_TICKET_REQUEST:
     case types.FETCH_TABLES_FOR_TICKET_REQUEST:
     case types.CLEAR_ASYNC_STORAGE:
       return state;
     
+    case types.FETCH_TICKET_REQUEST:
     case types.CLEAR_TICKET_STORAGE:
-      return { ...state, ticketStorage: {} as TicketStorage}
+      return { ...state, ticketStorage: null}
 
     default:
       // redux may have called it's own actions,
