@@ -37,7 +37,6 @@ export const androidConfigConverter = (config: any) => {
   return config as Androidconfig;
 };
 
-
 export interface TableTicket {
   Key: string;
   Left: string;
@@ -66,13 +65,21 @@ export const stripHTML = (str: string): string => {
 export type Logincreds = {
   username: string;
   password: string;
-}
+};
 
 export interface TicketAttribute {
   Name: string;
-  Type: "BIGINT" | "TEXT" | "DATETIME"
-  | "FILE" | "NUMERIC" | "GUID" | "VARCHAR"
-  | "DECIMAL" | "SMALLDATETIME" | "BIT";
+  Type:
+    | "BIGINT"
+    | "TEXT"
+    | "DATETIME"
+    | "FILE"
+    | "NUMERIC"
+    | "GUID"
+    | "VARCHAR"
+    | "DECIMAL"
+    | "SMALLDATETIME"
+    | "BIT";
   Value: any;
 }
 
@@ -81,7 +88,6 @@ export interface TicketLink {
   Name: string; // internal
   ParentTable: string; // tbl...
   Value: string; // russian
-
 }
 
 export interface TicketResponse {

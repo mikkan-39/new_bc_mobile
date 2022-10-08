@@ -13,21 +13,20 @@ interface Props {
 
 export default function LoginScreen(props: Props) {
   const dispatch = useDispatch();
-  const loginCallback = useCallback((creds: Logincreds) => dispatch(loginRequest(creds)), [dispatch]);
+  const loginCallback = useCallback(
+    (creds: Logincreds) => dispatch(loginRequest(creds)),
+    [dispatch]
+  );
   const styles = themeAwareStyles();
-  const { authorized, configured } = useSelector((state: RootState) => state)
+  const { authorized, configured } = useSelector((state: RootState) => state);
 
   useEffect(() => {
-    if (authorized && configured) props.navigation.navigate("Home")
+    if (authorized && configured) props.navigation.navigate("Home");
   }, [authorized, configured]);
 
   useEffect(() => {
     props.navigation.setOptions(styles.screenWithoutHeader);
-  }, [styles])
+  }, [styles]);
 
-  return (
-    <LoginComponent 
-      loginCallback={loginCallback}
-      />
-  );
+  return <LoginComponent loginCallback={loginCallback} />;
 }

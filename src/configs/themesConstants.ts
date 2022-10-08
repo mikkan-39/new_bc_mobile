@@ -1,11 +1,7 @@
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 export interface StyleStorage {
-  [styleName: string]:
-    | StyleStorage
-    | ViewStyle
-    | ImageStyle
-    | TextStyle;
+  [styleName: string]: StyleStorage | ViewStyle | ImageStyle | TextStyle;
 }
 
 export interface Theme {

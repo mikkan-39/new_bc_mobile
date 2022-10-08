@@ -13,16 +13,18 @@ interface Props {
   navigation?: any;
   route?: {
     params: {
-      parentTable: Tableinconfig
-    }
-  }
+      parentTable: Tableinconfig;
+    };
+  };
 }
 
 export default function TabScreen(props: Props) {
-  const parentTable = props.route!.params.parentTable
+  const parentTable = props.route!.params.parentTable;
   const styles = themeAwareStyles();
   const dispatch = useDispatch();
-  const tableFromStorage = useSelector((state: RootState) => state.tableStorage[parentTable.Table])
+  const tableFromStorage = useSelector(
+    (state: RootState) => state.tableStorage[parentTable.Table]
+  );
 
   // navigation setting for navBar styling
   useEffect(() => {
@@ -32,12 +34,15 @@ export default function TabScreen(props: Props) {
 
   // initial table request
   useEffect(() => {
-    dispatch(fetchTableRequest(parentTable))
-  }, [])
+    dispatch(fetchTableRequest(parentTable));
+  }, []);
 
   return (
     <View style={styles.defaultScreenBG}>
-      <TabComponent tableFromStorage={tableFromStorage} parentTable={parentTable} />
+      <TabComponent
+        tableFromStorage={tableFromStorage}
+        parentTable={parentTable}
+      />
     </View>
   );
 }

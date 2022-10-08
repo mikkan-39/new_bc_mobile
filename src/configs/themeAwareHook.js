@@ -11,8 +11,11 @@ const themeAwareStyles = () => {
   // We're using the React.useMemo hook for optimization,
   // the object will be re-generated if the theme changes
   // or the createStyles changes
-  const ThemeAware = React.useMemo(() => createStyles(theme), [createStyles, theme]);
+  const ThemeAware = React.useMemo(
+    () => createStyles(theme),
+    [createStyles, theme]
+  );
   return ThemeAware;
-}
+};
 
-export { themeAwareStyles }
+export { themeAwareStyles };

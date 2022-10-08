@@ -17,10 +17,10 @@ export const ThemeProvider = React.memo((props) => {
   const ToggleThemeCallback = React.useCallback((event) => {
     setTheme((currentTheme) => {
       switch (event.colorScheme) {
-        case 'light':
+        case "light":
           StatusBar.setBarStyle(LIGHT_THEME.statusbar, true);
           return LIGHT_THEME;
-        case 'dark':
+        case "dark":
           StatusBar.setBarStyle(DARK_THEME.statusbar, true);
           return DARK_THEME;
         default:
@@ -33,9 +33,7 @@ export const ThemeProvider = React.memo((props) => {
 
   return (
     // can use useMemo on theme if necessary
-    <Context.Provider value={{ theme }}>
-      {props.children}
-    </Context.Provider>
+    <Context.Provider value={{ theme }}>{props.children}</Context.Provider>
   );
 });
 

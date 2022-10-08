@@ -24,5 +24,5 @@ describe("Requests tests", () => {
         Table: "tblTask",
       });
     }).not.toThrowError();
-  })
+  });
 });

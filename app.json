@@ -4,9 +4,7 @@
     "slug": "New_BC_Mobile",
     "version": "1.0.0",
     "userInterfaceStyle": "automatic",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"]
   },
   "name": "New_BC_Mobile"
 }

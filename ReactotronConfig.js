@@ -1,7 +1,7 @@
 import Reactotron from "reactotron-react-native";
-import { reactotronRedux } from 'reactotron-redux'
+import { reactotronRedux } from "reactotron-redux";
 import { NativeModules } from "react-native";
-import sagaPlugin from 'reactotron-redux-saga';
+import sagaPlugin from "reactotron-redux-saga";
 
 let packagerHostname = "localhost";
 if (__DEV__) {

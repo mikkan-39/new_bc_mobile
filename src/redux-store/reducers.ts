@@ -1,10 +1,10 @@
-import { PayloadAction } from '@reduxjs/toolkit';
-import reactotron from 'reactotron-react-native';
-import * as types from './constants'
-import { Androidconfig, TableResponse, TicketResponse } from './helpers';
+import { PayloadAction } from "@reduxjs/toolkit";
+import reactotron from "reactotron-react-native";
+import * as types from "./constants";
+import { Androidconfig, TableResponse, TicketResponse } from "./helpers";
 
 interface TableStorage {
-  [key: string]: TableResponse
+  [key: string]: TableResponse;
 }
 
 const initialState = {
@@ -14,11 +14,10 @@ const initialState = {
   interfaceConfig: {} as Androidconfig,
   tableStorage: {} as TableStorage,
   ticketStorage: null as TicketResponse | null,
-}
+};
 
 export default (state = initialState, action: PayloadAction) => {
   switch (action.type) {
-
     case types.LOGIN_SUCCESS:
       return { ...state, authorized: true };
     case types.FETCH_CONFIG_SUCCESS:
@@ -27,32 +26,30 @@ export default (state = initialState, action: PayloadAction) => {
         configured: true,
         interfaceConfig: action.payload as unknown as Androidconfig,
       };
-    case types.FETCH_TABLE_SUCCESS:
-      {
-        const table = action.payload as unknown as TableResponse;
-        const { tableStorage } = state
-        tableStorage[table.Table] = table
-        return {
-          ...state,
-          tableStorage: {...tableStorage}
-        };
+    case types.FETCH_TABLE_SUCCESS: {
+      const table = action.payload as unknown as TableResponse;
+      const { tableStorage } = state;
+      tableStorage[table.Table] = table;
+      return {
+        ...state,
+        tableStorage: { ...tableStorage },
       };
-    case types.FETCH_TICKET_SUCCESS: 
-      {
-        const ticket = action.payload as unknown as TicketResponse;
-        return {
-          ...state,
-          ticketStorage: ticket
-        }
-      }
+    }
+    case types.FETCH_TICKET_SUCCESS: {
+      const ticket = action.payload as unknown as TicketResponse;
+      return {
+        ...state,
+        ticketStorage: ticket,
+      };
+    }
 
     case types.LOGIN_FAILED:
     case types.FETCH_CONFIG_FAILED:
     case types.FETCH_TABLE_FAILED:
     case types.FETCH_TICKET_FAILED:
-      return { ...state, error: action.payload as unknown as Error};
-    
-    // these are for redux-saga, 
+      return { ...state, error: action.payload as unknown as Error };
+
+    // these are for redux-saga,
     // which will call one of sagaFunctions.
     case types.FETCH_CONFIG_REQUEST:
     case types.REQUEST_LOGIN:
@@ -61,10 +58,10 @@ export default (state = initialState, action: PayloadAction) => {
     case types.FETCH_TABLES_FOR_TICKET_REQUEST:
     case types.CLEAR_ASYNC_STORAGE:
       return state;
-    
+
     case types.FETCH_TICKET_REQUEST:
     case types.CLEAR_TICKET_STORAGE:
-      return { ...state, ticketStorage: null}
+      return { ...state, ticketStorage: null };
 
     default:
       // redux may have called it's own actions,
@@ -79,4 +76,4 @@ export default (state = initialState, action: PayloadAction) => {
       }
       return state;
   }
-}
+};

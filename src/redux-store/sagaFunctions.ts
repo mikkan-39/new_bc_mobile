@@ -5,8 +5,19 @@ import * as api from "../api";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import reactotron from "reactotron-react-native";
-import { Androidconfig, androidConfigConverter, TableResponse, TicketLink, TicketResponse } from "./helpers";
-import { clearStorage, ensureLinkInStorage, getLinksFromStorage, LinkStorage } from "./storage";
+import {
+  Androidconfig,
+  androidConfigConverter,
+  TableResponse,
+  TicketLink,
+  TicketResponse,
+} from "./helpers";
+import {
+  clearStorage,
+  ensureLinkInStorage,
+  getLinksFromStorage,
+  LinkStorage,
+} from "./storage";
 import { RootState } from "./store";
 
 const call: any = Effects.call; // for TS
@@ -61,9 +72,12 @@ export function* getTable(action: PayloadAction) {
 
 export function* getTicket(action: PayloadAction) {
   try {
-    const ticketResponse: AxiosResponse = yield call(api.getTicket, action.payload);
+    const ticketResponse: AxiosResponse = yield call(
+      api.getTicket,
+      action.payload
+    );
     const ticketData = ticketResponse.data as unknown as TicketResponse;
-    yield put(actions.fetchTicketSuccess(ticketData))
+    yield put(actions.fetchTicketSuccess(ticketData));
   } catch (error: any) {
     yield put(actions.fetchTicketFailed(error));
   }
@@ -80,7 +94,7 @@ export function* getTablesForTickets(action: PayloadAction) {
     for (const link of links) {
       const response: AxiosResponse = yield call(api.getTicketTable, link);
       yield put(actions.fetchTableSuccess(response.data));
-    };
+    }
   } catch (error: any) {
     yield put(actions.fetchTableFailed(error));
   }
@@ -92,22 +106,27 @@ export function* getTablesForTickets(action: PayloadAction) {
 
 export function* preventiveTablesFetch(action: PayloadAction) {
   try {
-    const configFromStore: Androidconfig = yield select((state: RootState) => state.interfaceConfig)
-    const linksFromConfig: LinkStorage = yield call(getLinksFromStorage)
+    const configFromStore: Androidconfig = yield select(
+      (state: RootState) => state.interfaceConfig
+    );
+    const linksFromConfig: LinkStorage = yield call(getLinksFromStorage);
     let desireableLinks: TicketLink[] = [];
     configFromStore.Tabs.forEach((tab) => {
       tab.Editor.Controls.forEach((control) => {
         if (control.Key in linksFromConfig) {
           desireableLinks.push({
-            ParentTable: linksFromConfig[control.Key as keyof Object], Id: 0, Name: '', Value: ''
-          })
+            ParentTable: linksFromConfig[control.Key as keyof Object],
+            Id: 0,
+            Name: "",
+            Value: "",
+          });
         }
-      })
-    })
+      });
+    });
     for (const link of desireableLinks) {
       const response: AxiosResponse = yield call(api.getTicketTable, link);
       yield put(actions.fetchTableSuccess(response.data));
-    };
+    }
   } catch (error: any) {
     yield put(actions.fetchTableFailed(error));
   }
