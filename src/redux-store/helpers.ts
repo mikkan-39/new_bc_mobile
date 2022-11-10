@@ -11,15 +11,19 @@ export interface Tableinconfig {
 }
 
 export interface UpdaterControl {
-  Key: string;
-  Label: string;
+  Key: string; // e.g. taskType
+  Label: string; // e.g. Вид задачи
   Number: 0;
   Readonly: boolean;
   Type: "BIGINT" | "TEXT" | "DATETIME" | "FILE" | "NUMERIC";
+  Visible: boolean;
+  Value: any;
+  Required: boolean;
+  Format: any; // TODO: find out what this is?
 }
 
 export interface ExtendedControl extends UpdaterControl {
-  TableLink?: string;
+  TableLink?: string; // e.g. tblWorkSet, for fetching necessary table from state
 }
 
 export interface Editorinconfig {
