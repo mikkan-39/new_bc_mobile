@@ -22,5 +22,6 @@ const reactotron = Reactotron.configure({
   .use(reactotronRedux())
   .use(sagaPlugin())
   .connect();
+reactotron.clear();
 
 export default reactotron;
