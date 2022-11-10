@@ -7,13 +7,16 @@ interface TableStorage {
   [key: string]: TableResponse;
 }
 
+interface TicketStorage {
+  [key: string]: TicketResponse;
+}
 const initialState = {
   error: new Error(),
   authorized: false,
   configured: false,
   interfaceConfig: {} as Androidconfig,
   tableStorage: {} as TableStorage,
-  ticketStorage: null as TicketResponse | null,
+  ticketStorage: {} as TicketStorage,
 };
 
 export default (state = initialState, action: PayloadAction) => {
@@ -39,7 +42,7 @@ export default (state = initialState, action: PayloadAction) => {
       const ticket = action.payload as unknown as TicketResponse;
       return {
         ...state,
-        ticketStorage: ticket,
+        ticketStorage: { ...state.ticketStorage, [ticket.Id]: ticket },
       };
     }
 
@@ -56,11 +59,11 @@ export default (state = initialState, action: PayloadAction) => {
     case types.DEV_APP_INIT:
     case types.FETCH_TABLE_REQUEST:
     case types.FETCH_TABLES_FOR_TICKET_REQUEST:
+    case types.FETCH_TICKET_REQUEST:
     case types.CLEAR_ASYNC_STORAGE:
       return state;
 
-    case types.FETCH_TICKET_REQUEST:
-    case types.CLEAR_TICKET_STORAGE:
+    case types.CLEAR_TICKET_STORAGE: // FIXME: deprecated
       return { ...state, ticketStorage: null };
 
     default:

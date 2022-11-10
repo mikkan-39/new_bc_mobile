@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import { View } from "react-native";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -24,7 +24,7 @@ export default function UpdaterScreen(props: Props) {
   const dispatch = useDispatch();
   const ticketFromProps = props.route.params.ticket as TicketForRequest;
   const ticketFromResponse = useSelector(
-    (state: RootState) => state.ticketStorage
+    (state: RootState) => state.ticketStorage[ticketFromProps.Key]
   );
   const editor = config.Tabs.find(
     (item) => item.Table == ticketFromProps.ParentTable.Table
@@ -43,7 +43,7 @@ export default function UpdaterScreen(props: Props) {
 
   // fetching necessary tables for updater
   const tablesInStorage = useSelector((state: RootState) => state.tableStorage);
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (ticketFromResponse) {
       const necessaryLinks = generateNecessaryLinks(
         ticketFromResponse,
