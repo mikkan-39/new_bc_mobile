@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { ScrollView } from "react-native";
 import { useSelector } from "react-redux";
 import reactotron from "reactotron-react-native";
@@ -22,17 +22,25 @@ function UpdaterComponent(props: Props) {
   const { ticket, editor } = props;
   const styleStorage = themeAwareStyles();
   const styles = styleStorage.updater as StyleStorage;
-  const tablesInStorage = useSelector((state: RootState) => state.tableStorage);
 
   const generateInputs = useCallback(() => {
     var extendedControls = addLinksToEditorControls(ticket, editor);
-    reactotron.log!(extendedControls);
     return extendedControls.map((control) => (
-      <UniversalControl control={control} ticket={ticket} />
+      // controls are connected to redux themselves
+      <UniversalControl
+        control={control}
+        attribute={
+          ticket.Attributes.find((value) => {
+            return value.Name == control.Key;
+          })!
+        }
+        key={control.Key}
+      />
     ));
-  }, [ticket, editor, tablesInStorage]);
+  }, []); // this should be executed only once, so no deps.
 
-  if (!ticket) return null;
+  if (!ticket) return null; // this should not ever happen though
+
   return <ScrollView style={styles.ScrollView}>{generateInputs()}</ScrollView>;
 }
 

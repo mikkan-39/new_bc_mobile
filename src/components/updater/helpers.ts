@@ -29,11 +29,11 @@ export const addLinksToEditorControls = (
 export const generateNecessaryLinks = (
   ticket: TicketResponse,
   editor: Editorinconfig,
-  tablesInStorage: any
+  tablesInStorageOnStart: any
 ) => {
   const necessaryLinks = ticket.Links.filter((link) => {
     const x = editor.Controls.filter((control) => control.Key == link.Name);
-    return x.length == 1 && !(link.ParentTable in tablesInStorage);
+    return x.length == 1 && !(link.ParentTable in tablesInStorageOnStart);
   });
   return necessaryLinks;
 };

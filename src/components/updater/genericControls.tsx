@@ -2,26 +2,19 @@ import { Text, TextInput, View } from "react-native";
 import reactotron from "reactotron-react-native";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
 import { StyleStorage } from "../../configs/themesConstants";
-import {
-  ExtendedControl,
-  TicketAttribute,
-  TicketResponse,
-} from "../../redux-store/helpers";
+import { ExtendedControl, TicketAttribute } from "../../redux-store/helpers";
 
 interface Props {
   control: ExtendedControl;
-  ticket: TicketResponse;
+  attribute: TicketAttribute;
 }
 
 export function UniversalControl(props: Props) {
-  const { control, ticket } = props;
-  const thisAttribute = ticket.Attributes.find((value) => {
-    return value.Name == control.Key;
-  });
-  if (!thisAttribute) return null;
-  reactotron.log!(thisAttribute.Value);
-  const controlProps = { control, attribute: thisAttribute };
-  switch (thisAttribute.Type) {
+  const { control, attribute } = props;
+  if (!attribute) return null;
+  reactotron.log!(attribute.Value);
+  const controlProps = { control, attribute: attribute };
+  switch (attribute.Type) {
     case "TEXT":
       return <TextControl {...controlProps} />;
     default:
