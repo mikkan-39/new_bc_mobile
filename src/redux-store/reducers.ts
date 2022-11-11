@@ -23,12 +23,14 @@ export default (state = initialState, action: PayloadAction) => {
   switch (action.type) {
     case types.LOGIN_SUCCESS:
       return { ...state, authorized: true };
+
     case types.FETCH_CONFIG_SUCCESS:
       return {
         ...state,
         configured: true,
         interfaceConfig: action.payload as unknown as Androidconfig,
       };
+
     case types.FETCH_TABLE_SUCCESS: {
       const table = action.payload as unknown as TableResponse;
       const { tableStorage } = state;
@@ -38,8 +40,16 @@ export default (state = initialState, action: PayloadAction) => {
         tableStorage: { ...tableStorage },
       };
     }
+
     case types.FETCH_TICKET_SUCCESS: {
       const ticket = action.payload as unknown as TicketResponse;
+      if (
+        JSON.stringify(ticket) == JSON.stringify(state.ticketStorage[ticket.Id])
+      ) {
+        return state;
+      }
+
+      // if I do this the link to ticket object changes and updater re-renders
       return {
         ...state,
         ticketStorage: { ...state.ticketStorage, [ticket.Id]: ticket },

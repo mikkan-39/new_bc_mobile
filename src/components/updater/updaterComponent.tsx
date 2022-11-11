@@ -37,7 +37,7 @@ function UpdaterComponent(props: Props) {
         key={control.Key}
       />
     ));
-  }, []); // this should be executed only once, so no deps.
+  }, [editor, ticket]);
 
   if (!ticket) return null; // this should not ever happen though
 
