@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { View } from "react-native";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -37,8 +37,10 @@ export default function UpdaterScreen(props: Props) {
 
   // navigation setting for navBar styling
   useEffect(() => {
-    props.navigation.setOptions(styles.screenWithHeader);
-    props.navigation.setOptions(styles.tabBar);
+    props.navigation.setOptions({
+      ...styles.screenWithHeader,
+      ...styles.tabBar,
+    });
   }, [styles]);
 
   // fetching necessary tables for updater

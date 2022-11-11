@@ -28,8 +28,10 @@ export default function TabScreen(props: Props) {
 
   // navigation setting for navBar styling
   useEffect(() => {
-    props.navigation.setOptions(styles.screenWithHeader);
-    props.navigation.setOptions(styles.tabBar);
+    props.navigation.setOptions({
+      ...styles.screenWithHeader,
+      ...styles.tabBar,
+    });
   }, [styles]);
 
   // initial table request
