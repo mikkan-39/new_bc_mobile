@@ -22,10 +22,6 @@ export interface UpdaterControl {
   Format: any; // TODO: find out what this is?
 }
 
-export interface ExtendedControl extends UpdaterControl {
-  TableLink?: string; // e.g. tblWorkSet, for fetching necessary table from state
-}
-
 export interface Editorinconfig {
   Name: string;
   Table: string;
