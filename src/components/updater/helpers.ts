@@ -14,3 +14,8 @@ export const generateNecessaryLinks = (
   });
   return necessaryLinks;
 };
+
+// Adds table links as ticket attributes for easier control rendering
+export function addTablesToControls(ticket: TicketResponse) {
+  return ticket;
+}

@@ -8,6 +8,7 @@ import { Editorinconfig, TicketResponse } from "../../redux-store/helpers";
 import { addLinkToStorage } from "../../redux-store/storage";
 import { RootState } from "../../redux-store/store";
 import { UniversalControl } from "./genericControls";
+import { addTablesToControls } from "./helpers";
 
 interface Props {
   ticket: TicketResponse;
@@ -18,11 +19,16 @@ function UpdaterComponent(props: Props) {
   const { ticket, editor } = props;
   const styleStorage = themeAwareStyles();
   const styles = styleStorage.updater as StyleStorage;
+  const alteredTicket = addTablesToControls(ticket);
 
   const generateInputs = useCallback(() => {
     return editor.Controls.map((control) => (
       // controls are connected to redux themselves
-      <UniversalControl control={control} ticket={ticket} key={control.Key} />
+      <UniversalControl
+        control={control}
+        ticket={alteredTicket}
+        key={control.Key}
+      />
     ));
   }, [editor, ticket]);
 
