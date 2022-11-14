@@ -70,6 +70,7 @@ export type Logincreds = {
 export interface TicketAttribute {
   Name: string;
   Type:
+    | "TABLE" // for rendering table controls
     | "BIGINT"
     | "TEXT"
     | "DATETIME"
@@ -81,6 +82,8 @@ export interface TicketAttribute {
     | "SMALLDATETIME"
     | "BIT";
   Value: any;
+  TableSelectionId?: number;
+  TableStoreLink?: string;
 }
 
 export interface TicketLink {

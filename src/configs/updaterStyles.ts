@@ -7,23 +7,22 @@ export const updaterStyles = (theme: Theme): StyleStorage => {
       padding: 10,
       paddingBottom: 0,
     },
-    inputContainer: {
-      borderRadius: theme.rounding,
-      marginBottom: 10,
-      padding: 10,
-      backgroundColor: theme.surfaceColor,
-      minHeight: 20,
-    },
     controlContainer: {
       borderRadius: theme.rounding,
       marginBottom: 10,
       padding: 10,
       backgroundColor: theme.surfaceColor,
       minHeight: 30,
+      flex: 1,
     },
-    textInput: {
-      fontSize: theme.fontSize,
-      color: theme.textColor,
+    loaderContainer: {
+      // should mostly inherit controlContainer
+      borderRadius: theme.rounding,
+      marginBottom: 10,
+      padding: 10,
+      backgroundColor: theme.surfaceColor,
+      minHeight: 30,
+      flex: 1,
     },
     labelText: {
       fontSize: theme.fontSize * 0.75,
