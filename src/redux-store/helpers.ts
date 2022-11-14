@@ -83,6 +83,7 @@ export interface TicketAttribute {
     | "BIT";
   Value: any;
   TableSelectionId?: number;
+  TableStoreLink?: string;
 }
 
 export interface TicketLink {

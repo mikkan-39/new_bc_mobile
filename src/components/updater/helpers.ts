@@ -27,6 +27,7 @@ export function addTablesToAttributes(ticket: TicketResponse) {
     ticket.Attributes.push({
       Name: Link.Name,
       TableSelectionId: Link.Id,
+      TableStoreLink: Link.ParentTable,
       Value: Link.Value,
       Type: "TABLE",
     } as TicketAttribute);
