@@ -57,7 +57,8 @@ export default function UpdaterScreen(props: Props) {
     }
   }, [ticketFromResponse]); // tablesInStorage intentionally not in here.
 
-  if (ticketFromResponse == null) return null;
+  if (ticketFromResponse == null)
+    return <View style={styles.defaultScreenBG} />;
   return (
     <View style={styles.defaultScreenBG}>
       <UpdaterComponent ticket={ticketFromResponse} editor={editor} />
