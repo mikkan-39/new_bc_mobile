@@ -1,5 +1,10 @@
+import { Link } from "@react-navigation/native";
 import { useSelector } from "react-redux";
-import { Editorinconfig, TicketResponse } from "../../redux-store/helpers";
+import {
+  Editorinconfig,
+  TicketAttribute,
+  TicketResponse,
+} from "../../redux-store/helpers";
 import { RootState } from "../../redux-store/store";
 
 // Checks which tables are needed for rendering editor and have not yet been fetched
@@ -16,6 +21,14 @@ export const generateNecessaryLinks = (
 };
 
 // Adds table links as ticket attributes for easier control rendering
-export function addTablesToControls(ticket: TicketResponse) {
+export function addTablesToAttributes(ticket: TicketResponse) {
+  for (const Link of ticket.Links) {
+    ticket.Attributes.push({
+      Name: Link.Name,
+      TableSelectionId: Link.Id,
+      Value: Link.Value,
+      Type: "TABLE",
+    } as TicketAttribute);
+  }
   return ticket;
 }
