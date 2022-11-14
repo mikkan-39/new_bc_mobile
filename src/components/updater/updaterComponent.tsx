@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import reactotron from "reactotron-react-native";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
 import { StyleStorage } from "../../configs/themesConstants";
-import { Editorinconfig, TicketResponse } from "../../redux-store/helpers";
+import { Editorinconfig, TicketResponse } from "../../redux-store/interfaces";
 import { addLinkToStorage } from "../../redux-store/storage";
 import { RootState } from "../../redux-store/store";
 import { UniversalControl } from "./genericControls";

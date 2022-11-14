@@ -8,7 +8,7 @@ import {
   TicketForRequest,
   TicketLink,
   TicketResponse,
-} from "./helpers";
+} from "./interfaces";
 
 export const devAppInit = () => {
   return {

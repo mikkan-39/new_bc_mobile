@@ -8,7 +8,7 @@ import {
   TicketAttribute,
   TicketResponse,
   UpdaterControl,
-} from "../../redux-store/helpers";
+} from "../../redux-store/interfaces";
 import { RootState } from "../../redux-store/store";
 import { findAttributeForControl } from "./helpers";
 

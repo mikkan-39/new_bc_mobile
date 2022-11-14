@@ -4,7 +4,7 @@ import {
   Tableinconfig,
   TableResponse,
   TicketForRequest,
-} from "../../redux-store/helpers";
+} from "../../redux-store/interfaces";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
 import TableElement from "./tableElement";
 import reactotron from "reactotron-react-native";

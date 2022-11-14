@@ -5,7 +5,7 @@ import {
   Tableinconfig,
   TicketForRequest,
   TicketLink,
-} from "../redux-store/helpers";
+} from "../redux-store/interfaces";
 const restURL = "http://nightly.claris.su/restservice.svc";
 const androidURL = "http://nightly.claris.su/androidservice.svc";
 

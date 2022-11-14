@@ -11,7 +11,7 @@ import {
   TableResponse,
   TicketLink,
   TicketResponse,
-} from "./helpers";
+} from "./interfaces";
 import {
   clearStorage,
   ensureLinkInStorage,

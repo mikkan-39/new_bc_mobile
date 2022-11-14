@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { useEffect } from "react";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
 import TabComponent from "./tabComponent";
-import { Tableinconfig } from "../../redux-store/helpers";
+import { Tableinconfig } from "../../redux-store/interfaces";
 import { useDispatch } from "react-redux";
 import { fetchTableRequest } from "../../redux-store/actions";
 import reactotron from "reactotron-react-native";

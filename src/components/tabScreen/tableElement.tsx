@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
 import { StyleStorage } from "../../configs/themesConstants";
-import { stripHTML, TicketForRequest } from "../../redux-store/helpers";
+import { stripHTML, TicketForRequest } from "../../redux-store/interfaces";
 
 interface Props {
   element: TicketForRequest; // MUST have ParentTable

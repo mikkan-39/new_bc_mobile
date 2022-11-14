@@ -6,7 +6,7 @@ import {
   TicketAttribute,
   TicketResponse,
   UpdaterControl,
-} from "../../redux-store/helpers";
+} from "../../redux-store/interfaces";
 import { RootState } from "../../redux-store/store";
 
 // Checks which tables are needed for rendering editor and have not yet been fetched

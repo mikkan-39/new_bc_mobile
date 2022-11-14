@@ -5,7 +5,7 @@ import { themeAwareStyles } from "../configs/themeAwareHook";
 import LoginComponent from "./loginComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux-store/store";
-import { Logincreds } from "../redux-store/helpers";
+import { Logincreds } from "../redux-store/interfaces";
 
 interface Props {
   navigation: any;
