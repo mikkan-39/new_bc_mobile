@@ -4,6 +4,7 @@ import {
   Editorinconfig,
   TicketAttribute,
   TicketResponse,
+  UpdaterControl,
 } from "../../redux-store/helpers";
 import { RootState } from "../../redux-store/store";
 
@@ -31,4 +32,14 @@ export function addTablesToAttributes(ticket: TicketResponse) {
     } as TicketAttribute);
   }
   return ticket;
+}
+
+export function findAttributeForControl(
+  control: UpdaterControl,
+  attributes: TicketAttribute[]
+) {
+  for (const attribute of attributes) {
+    if (attribute.Name == control.Key) return attribute;
+  }
+  return undefined;
 }
