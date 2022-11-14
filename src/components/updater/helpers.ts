@@ -2,6 +2,7 @@ import { Link } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import {
   Editorinconfig,
+  TableResponse,
   TicketAttribute,
   TicketResponse,
   UpdaterControl,
