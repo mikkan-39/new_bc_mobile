@@ -49,7 +49,7 @@ function Placeholder(control: UpdaterControl, attribute: TicketAttribute) {
   return (
     <View style={styles.controlContainer}>
       <Text style={styles.labelText}>{control.Label}</Text>
-      <Text style={styles.placeholderControl}>{attribute.Value}</Text>
+      <Text style={styles.placeholderText}>{attribute.Value}</Text>
     </View>
   );
 }

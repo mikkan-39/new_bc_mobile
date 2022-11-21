@@ -4,14 +4,20 @@ export interface StyleStorage {
   [styleName: string]: StyleStorage | ViewStyle | ImageStyle | TextStyle;
 }
 
+type RGB = `rgb(${number}, ${number}, ${number})`;
+type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
+type HEX = `#${string}`;
+type Color = RGB | RGBA | HEX;
+
 export interface Theme {
   id: string;
-  accentColor: string; // bright, saturated
-  onAccentColor: string; // accentColor when selected
-  surfaceColor: string; // elements above page's background
-  backgroundColor: string; // page backgound
+  accentColor: Color; // bright, saturated
+  secondaryColor: Color;
+  onAccentColor: Color; // accentColor when selected
+  surfaceColor: Color; // elements above page's background
+  backgroundColor: Color; // page backgound
   statusbar: "light-content" | "dark-content"; // statusbar mode
-  textColor: string;
+  textColor: Color;
   fontSize: number;
   rounding: number;
 }
@@ -21,6 +27,7 @@ const DEFAULT_ROUNDING = 15;
 export const LIGHT_THEME: Theme = {
   id: "default-light",
   accentColor: "#976dd7",
+  secondaryColor: "#999",
   onAccentColor: "#fff",
   surfaceColor: "#fff",
   backgroundColor: "#eee",
@@ -33,6 +40,7 @@ export const LIGHT_THEME: Theme = {
 export const DARK_THEME: Theme = {
   id: "default-dark",
   accentColor: "#774ec2",
+  secondaryColor: "#666",
   onAccentColor: "#fff",
   surfaceColor: "#333",
   backgroundColor: "#222",

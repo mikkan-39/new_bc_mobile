@@ -12,8 +12,9 @@ export const updaterStyles = (theme: Theme): StyleStorage => {
       marginBottom: 10,
       padding: 10,
       backgroundColor: theme.surfaceColor,
-      minHeight: 30,
       flex: 1,
+      minHeight: 75,
+      justifyContent: "space-between",
     },
     loaderContainer: {
       // should mostly inherit controlContainer
@@ -21,15 +22,18 @@ export const updaterStyles = (theme: Theme): StyleStorage => {
       marginBottom: 10,
       padding: 10,
       backgroundColor: theme.surfaceColor,
-      minHeight: 30,
       flex: 1,
+      minHeight: 85,
+      justifyContent: "space-between",
+      overflow: "hidden",
     },
     labelText: {
       fontSize: theme.fontSize * 0.75,
       color: theme.textColor,
       opacity: 0.75,
+      alignSelf: "flex-end",
     },
-    placeholderControl: {
+    placeholderText: {
       fontSize: theme.fontSize,
       color: theme.textColor,
     },
