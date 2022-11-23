@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import {
   View,
   KeyboardAvoidingView,
@@ -20,6 +20,7 @@ interface Props {
 
 export default function LoginComponent(props: Props) {
   const styles = themeAwareStyles();
+  const passInput = useRef<TextInput>(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -53,14 +54,21 @@ export default function LoginComponent(props: Props) {
           style={styles.login.field}
           onChangeText={setUsername}
           value={username}
+          returnKeyType="next"
+          autoCapitalize="none"
+          onSubmitEditing={() => passInput.current?.focus!()}
         />
 
         <TextInput
           testID="password"
+          ref={passInput}
           style={styles.login.field}
           secureTextEntry={true}
           onChangeText={setPassword}
           value={password}
+          autoCapitalize="none"
+          onSubmitEditing={onLoginPress}
+          returnKeyType="go"
         />
 
         <TouchableOpacity

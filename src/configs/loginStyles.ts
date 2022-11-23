@@ -34,6 +34,14 @@ export const loginStyles = (theme: Theme): StyleStorage => {
       borderRadius: theme.rounding * 2,
       backgroundColor: theme.surfaceColor,
       flexShrink: 1,
+      shadowColor: theme.accentColor,
+      shadowOffset: {
+        width: 0,
+        height: 0,
+      },
+      shadowOpacity: 0.39,
+      shadowRadius: 8.3,
+      elevation: 13,
     },
     image: {
       width: "100%",
@@ -50,6 +58,14 @@ export const loginStyles = (theme: Theme): StyleStorage => {
       backgroundColor: theme.surfaceColor,
       fontSize: theme.fontSize,
       color: theme.textColor,
+      shadowColor: theme.accentColor,
+      shadowOffset: {
+        width: 0,
+        height: 0,
+      },
+      shadowOpacity: 0.39,
+      shadowRadius: 8.3,
+      elevation: 13,
     },
     button: {
       width: "50%",
@@ -60,6 +76,14 @@ export const loginStyles = (theme: Theme): StyleStorage => {
       backgroundColor: theme.accentColor,
       alignItems: "center",
       justifyContent: "center",
+      shadowColor: theme.accentColor,
+      shadowOffset: {
+        width: 0,
+        height: 0, // 24 to match android
+      },
+      shadowOpacity: 0.58,
+      shadowRadius: 16.0,
+      elevation: 24,
     },
     text: {
       fontSize: theme.fontSize * 1.2,

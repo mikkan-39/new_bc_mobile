@@ -39,12 +39,20 @@ exports[`loginComponent test should match snapshot 1`] = `
           "aspectRatio": 1,
           "backgroundColor": "#fff",
           "borderRadius": 30,
+          "elevation": 13,
           "flexShrink": 1,
           "height": undefined,
           "maxWidth": 300,
           "minHeight": 100,
           "minWidth": 100,
           "padding": 10,
+          "shadowColor": "#976dd7",
+          "shadowOffset": {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0.39,
+          "shadowRadius": 8.3,
           "width": "50%",
         }
       }
@@ -75,18 +83,29 @@ exports[`loginComponent test should match snapshot 1`] = `
       }
     />
     <TextInput
+      autoCapitalize="none"
       onChangeText={[Function]}
+      onSubmitEditing={[Function]}
+      returnKeyType="next"
       style={
         {
           "backgroundColor": "#fff",
           "borderRadius": 15,
           "color": "#000",
+          "elevation": 13,
           "fontSize": 20,
           "height": 50,
           "marginTop": 25,
           "maxWidth": 300,
           "padding": 10,
           "paddingHorizontal": 15,
+          "shadowColor": "#976dd7",
+          "shadowOffset": {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0.39,
+          "shadowRadius": 8.3,
           "width": "75%",
         }
       }
@@ -94,19 +113,30 @@ exports[`loginComponent test should match snapshot 1`] = `
       value=""
     />
     <TextInput
+      autoCapitalize="none"
       onChangeText={[Function]}
+      onSubmitEditing={[Function]}
+      returnKeyType="go"
       secureTextEntry={true}
       style={
         {
           "backgroundColor": "#fff",
           "borderRadius": 15,
           "color": "#000",
+          "elevation": 13,
           "fontSize": 20,
           "height": 50,
           "marginTop": 25,
           "maxWidth": 300,
           "padding": 10,
           "paddingHorizontal": 15,
+          "shadowColor": "#976dd7",
+          "shadowOffset": {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0.39,
+          "shadowRadius": 8.3,
           "width": "75%",
         }
       }
@@ -129,11 +159,19 @@ exports[`loginComponent test should match snapshot 1`] = `
           "alignItems": "center",
           "backgroundColor": "#976dd7",
           "borderRadius": 15,
+          "elevation": 24,
           "height": 50,
           "justifyContent": "center",
           "margin": 25,
           "maxWidth": 200,
           "opacity": 1,
+          "shadowColor": "#976dd7",
+          "shadowOffset": {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0.58,
+          "shadowRadius": 16,
           "width": "50%",
         }
       }

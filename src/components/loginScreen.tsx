@@ -6,6 +6,7 @@ import LoginComponent from "./loginComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux-store/store";
 import { Logincreds } from "../redux-store/interfaces";
+import { Alert } from "react-native";
 
 interface Props {
   navigation: any;
@@ -18,7 +19,15 @@ export default function LoginScreen(props: Props) {
     [dispatch]
   );
   const styles = themeAwareStyles();
-  const { authorized, configured } = useSelector((state: RootState) => state);
+  const { authorized, configured, error } = useSelector(
+    (state: RootState) => state
+  );
+
+  useEffect(() => {
+    if (error != null) {
+      Alert.alert(error.message);
+    }
+  }, [error]);
 
   useEffect(() => {
     if (authorized && configured) props.navigation.navigate("Home");

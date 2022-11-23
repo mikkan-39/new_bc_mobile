@@ -11,7 +11,7 @@ interface TicketStorage {
   [key: string]: TicketResponse;
 }
 const initialState = {
-  error: new Error(),
+  error: null as null | Error,
   authorized: false,
   configured: false,
   interfaceConfig: {} as Androidconfig,
