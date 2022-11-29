@@ -1,8 +1,11 @@
+import { Fragment, useEffect } from "react";
 import { Text, View } from "react-native";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import reactotron from "reactotron-react-native";
 import { NO_SELECTION_PLACEHOLDER } from "../../configs/errorMessages";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
+import { editTicketField } from "../../redux-store/actions";
 import {
   stripHTML,
   TicketAttribute,
@@ -10,41 +13,62 @@ import {
   UpdaterControl,
 } from "../../redux-store/interfaces";
 import { RootState } from "../../redux-store/store";
-import { findAttributeForControl } from "./helpers";
+import { findAttributeForControl, findLink } from "./helpers";
 
 interface Props {
   control: UpdaterControl;
-  ticket: TicketResponse;
+  ticketId: number;
 }
 
+// This should deal with how to represent any attribute to the user
 export function UniversalControl(props: Props) {
-  const { control, ticket } = props;
-  const attribute = findAttributeForControl(control, ticket.Attributes);
-  if (!attribute) {
-    reactotron.warn!({ message: "Could not find attribute", control, ticket });
-    return null;
-  }
+  const { control, ticketId } = props;
+  const ticket = useSelector(
+    (state: RootState) => state.ticketStorage[ticketId]
+  );
+  // this will be undefined for tables
+  const attribute = findAttributeForControl(control, ticket.Attributes)!;
 
-  // Finding readable table values in store by ID
-  const tableStorage = useSelector((state: RootState) => state.tableStorage);
-  if (attribute.Type == "TABLE") {
-    if (!tableStorage[attribute.TableStoreLink!]) return LoaderPlaceholder();
-    // Sometimes there is nothing, e.g. id is set to -1.
-    attribute.Value = NO_SELECTION_PLACEHOLDER;
-    for (const option of tableStorage[attribute.TableStoreLink!].Set) {
-      if (option.Key == attribute.TableSelectionId!.toString())
-        attribute.Value = option.Name;
-    }
-  }
-
-  attribute.Value = stripHTML(attribute.Value);
-  switch (attribute!.Type) {
+  // This is some lame prop drilling
+  switch (control.Type) {
+    case "TEXT":
+      return TextField(control, attribute, ticket);
+    case "BIGINT":
+    case "FILE":
+      return TableField(control, ticket);
     default:
-      return Placeholder(control, attribute);
+      return Placeholder(control, attribute, ticket);
   }
 }
 
-function Placeholder(control: UpdaterControl, attribute: TicketAttribute) {
+// Use this for attribute types that are WIP
+function Placeholder(
+  control: UpdaterControl,
+  attribute: TicketAttribute,
+  ticket: TicketResponse
+) {
+  const styles = themeAwareStyles().updater;
+  stripHTML(attribute.Value);
+  return (
+    <View style={styles.controlContainer}>
+      <Text style={styles.labelText}>{control.Label}</Text>
+      <Text style={styles.placeholderText}>{attribute.Value}</Text>
+    </View>
+  );
+}
+
+// For tables which have not been loaded yet
+function LoaderPlaceholder() {
+  const styles = themeAwareStyles().updater;
+  return <View style={styles.loaderContainer}></View>;
+}
+
+function TextField(
+  control: UpdaterControl,
+  attribute: TicketAttribute,
+  ticket: TicketResponse
+) {
+  stripHTML(attribute.Value);
   const styles = themeAwareStyles().updater;
   return (
     <View style={styles.controlContainer}>
@@ -54,7 +78,23 @@ function Placeholder(control: UpdaterControl, attribute: TicketAttribute) {
   );
 }
 
-function LoaderPlaceholder() {
+function TableField(control: UpdaterControl, ticket: TicketResponse) {
   const styles = themeAwareStyles().updater;
-  return <View style={styles.loaderContainer}></View>;
+  const link = findLink(ticket, control);
+  const table = useSelector(
+    (state: RootState) => state.tableStorage[link!.ParentTable]
+  );
+  if (!table) return LoaderPlaceholder();
+
+  var label = NO_SELECTION_PLACEHOLDER;
+  for (const option of table.Set) {
+    if (option.Key == link!.Id.toString()) label = option.Name;
+  }
+
+  return (
+    <View style={styles.controlContainer}>
+      <Text style={styles.labelText}>{control.Label}</Text>
+      <Text style={styles.placeholderText}>{label}</Text>
+    </View>
+  );
 }

@@ -61,7 +61,7 @@ export default function UpdaterScreen(props: Props) {
     return <View style={styles.defaultScreenBG} />;
   return (
     <View style={styles.defaultScreenBG}>
-      <UpdaterComponent ticket={ticketFromResponse} editor={editor} />
+      <UpdaterComponent ticketId={ticketFromResponse.Id} editor={editor} />
     </View>
   );
 }
