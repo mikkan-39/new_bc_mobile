@@ -99,3 +99,9 @@ export interface TicketResponse {
   Table: string; // tbl...
   Links: TicketLink[];
 }
+
+export interface TicketEditActionPayload {
+  ticket: TicketResponse;
+  attribute: TicketAttribute;
+  value: any;
+}

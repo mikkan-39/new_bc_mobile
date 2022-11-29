@@ -2,15 +2,16 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import reactotron from "reactotron-react-native";
 import * as types from "./constants";
 import { Androidconfig, TableResponse, TicketResponse } from "./interfaces";
+import ticketEditorReducer from "./ticketEditorReducer";
 
-interface TableStorage {
+export interface TableStorage {
   [key: string]: TableResponse;
 }
 
-interface TicketStorage {
+export interface TicketStorage {
   [key: string]: TicketResponse;
 }
-const initialState = {
+export const initialState = {
   error: null as null | Error,
   authorized: false,
   configured: false,
@@ -75,6 +76,9 @@ export default (state = initialState, action: PayloadAction) => {
 
     case types.CLEAR_TICKET_STORAGE: // FIXME: deprecated
       return { ...state, ticketStorage: null };
+
+    case types.EDIT_TICKET_FIELD:
+      return ticketEditorReducer(state, action);
 
     default:
       // redux may have called it's own actions,

@@ -5,6 +5,8 @@ import {
   Tableinconfig,
   TableResponse,
   TableTicket,
+  TicketAttribute,
+  TicketEditActionPayload,
   TicketForRequest,
   TicketLink,
   TicketResponse,
@@ -114,5 +116,20 @@ export const clearTicketStorage = () => {
 export const clearAsyncStorage = () => {
   return {
     type: types.CLEAR_ASYNC_STORAGE,
+  };
+};
+
+export const editTicketField = (
+  ticket: TicketResponse,
+  attribute: TicketAttribute,
+  value: any
+) => {
+  return {
+    type: types.EDIT_TICKET_FIELD,
+    payload: {
+      ticket,
+      attribute,
+      value,
+    } as TicketEditActionPayload,
   };
 };
