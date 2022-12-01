@@ -3,7 +3,10 @@ import { Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import reactotron from "reactotron-react-native";
-import { NO_SELECTION_PLACEHOLDER } from "../../configs/errorMessages";
+import {
+  LOADING_PLACEHOLDER,
+  NO_SELECTION_PLACEHOLDER,
+} from "../../configs/errorMessages";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
 import { editTicketField } from "../../redux-store/actions";
 import {
@@ -20,56 +23,48 @@ interface Props {
   ticketId: number;
 }
 
+interface ControlProps {
+  control: UpdaterControl;
+  ticket: TicketResponse;
+}
+
 // This should deal with how to represent any attribute to the user
 export function UniversalControl(props: Props) {
   const { control, ticketId } = props;
   const ticket = useSelector(
     (state: RootState) => state.ticketStorage[ticketId]
   );
-  // this will be undefined for tables
-  const attribute = findAttributeForControl(control, ticket.Attributes)!;
+
+  if (!ticket) return <LoaderPlaceholder />;
 
   // This is some lame prop drilling
+  // For some reason if we don't use
+  // component syntax and call them as functions,
+  // problems with hooks arise.
   switch (control.Type) {
-    case "TEXT":
-      return TextField(control, attribute, ticket);
     case "BIGINT":
     case "FILE":
-      return TableField(control, ticket);
+      return <TableField control={control} ticket={ticket} />;
     default:
-      return Placeholder(control, attribute, ticket);
+      return <TextField control={control} ticket={ticket} />;
   }
-}
-
-// Use this for attribute types that are WIP
-function Placeholder(
-  control: UpdaterControl,
-  attribute: TicketAttribute,
-  ticket: TicketResponse
-) {
-  const styles = themeAwareStyles().updater;
-  stripHTML(attribute.Value);
-  return (
-    <View style={styles.controlContainer}>
-      <Text style={styles.labelText}>{control.Label}</Text>
-      <Text style={styles.placeholderText}>{attribute.Value}</Text>
-    </View>
-  );
 }
 
 // For tables which have not been loaded yet
 function LoaderPlaceholder() {
   const styles = themeAwareStyles().updater;
-  return <View style={styles.loaderContainer}></View>;
+  return (
+    <View style={styles.loaderContainer}>
+      <Text style={styles.placeholderText}>{LOADING_PLACEHOLDER}</Text>
+    </View>
+  );
 }
 
-function TextField(
-  control: UpdaterControl,
-  attribute: TicketAttribute,
-  ticket: TicketResponse
-) {
-  stripHTML(attribute.Value);
+function TextField(props: ControlProps) {
+  const { control, ticket } = props;
   const styles = themeAwareStyles().updater;
+  const attribute = findAttributeForControl(control, ticket.Attributes)!;
+  stripHTML(attribute.Value);
   return (
     <View style={styles.controlContainer}>
       <Text style={styles.labelText}>{control.Label}</Text>
@@ -78,7 +73,8 @@ function TextField(
   );
 }
 
-function TableField(control: UpdaterControl, ticket: TicketResponse) {
+function TableField(props: ControlProps) {
+  const { control, ticket } = props;
   const styles = themeAwareStyles().updater;
   const link = findLink(ticket, control);
   const table = useSelector(

@@ -27,8 +27,6 @@ function UpdaterComponent(props: Props) {
     ));
   }, [editor, ticketId]);
 
-  reactotron.log!("render");
-
   return <ScrollView style={styles.ScrollView}>{generateInputs()}</ScrollView>;
 }
 

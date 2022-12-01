@@ -57,11 +57,12 @@ export default function UpdaterScreen(props: Props) {
     }
   }, [ticketFromResponse]); // tablesInStorage intentionally not in here.
 
-  if (ticketFromResponse == null)
-    return <View style={styles.defaultScreenBG} />;
   return (
     <View style={styles.defaultScreenBG}>
-      <UpdaterComponent ticketId={ticketFromResponse.Id} editor={editor} />
+      <UpdaterComponent
+        ticketId={ticketFromProps.Key as unknown as number}
+        editor={editor}
+      />
     </View>
   );
 }
