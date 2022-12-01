@@ -13,7 +13,7 @@ export interface Tableinconfig {
 export interface UpdaterControl {
   Key: string; // e.g. taskType
   Label: string; // e.g. Вид задачи
-  Number: 0;
+  Number: number;
   Readonly: boolean;
   Type: "BIGINT" | "TEXT" | "DATETIME" | "FILE" | "NUMERIC";
   Visible: boolean;
@@ -82,8 +82,6 @@ export interface TicketAttribute {
     | "SMALLDATETIME"
     | "BIT";
   Value: any;
-  TableSelectionId?: number;
-  TableStoreLink?: string;
 }
 
 export interface TicketLink {

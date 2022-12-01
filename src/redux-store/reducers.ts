@@ -74,11 +74,14 @@ export default (state = initialState, action: PayloadAction) => {
     case types.CLEAR_ASYNC_STORAGE:
       return state;
 
-    case types.CLEAR_TICKET_STORAGE: // FIXME: deprecated
+    case types.CLEAR_TICKET_STORAGE:
       return { ...state, ticketStorage: null };
 
     case types.EDIT_TICKET_FIELD:
-      return ticketEditorReducer(state, action);
+      return {
+        ...state,
+        ticketStorage: ticketEditorReducer(state.ticketStorage, action),
+      };
 
     default:
       // redux may have called it's own actions,

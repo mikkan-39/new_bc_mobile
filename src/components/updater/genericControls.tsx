@@ -1,5 +1,6 @@
-import { Fragment, useEffect } from "react";
-import { Text, View } from "react-native";
+import { Fragment, useCallback, useEffect } from "react";
+import { Text, TextInput, View } from "react-native";
+import { Fumi } from "react-native-textinput-effects";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import reactotron from "reactotron-react-native";
@@ -17,6 +18,7 @@ import {
 } from "../../redux-store/interfaces";
 import { RootState } from "../../redux-store/store";
 import { findAttributeForControl, findLink } from "./helpers";
+import Feather from "react-native-vector-icons/Feather";
 
 interface Props {
   control: UpdaterControl;
@@ -41,6 +43,8 @@ export function UniversalControl(props: Props) {
   // For some reason if we don't use
   // component syntax and call them as functions,
   // problems with hooks arise.
+
+  reactotron.log!("Rendering control #" + control.Key);
   switch (control.Type) {
     case "BIGINT":
     case "FILE":
@@ -64,11 +68,23 @@ function TextField(props: ControlProps) {
   const { control, ticket } = props;
   const styles = themeAwareStyles().updater;
   const attribute = findAttributeForControl(control, ticket.Attributes)!;
+  const dispatch = useDispatch();
+  const editField = useCallback(
+    (value: any) => {
+      dispatch(editTicketField(ticket, attribute, value));
+    },
+    [dispatch]
+  );
   stripHTML(attribute.Value);
   return (
     <View style={styles.controlContainer}>
       <Text style={styles.labelText}>{control.Label}</Text>
-      <Text style={styles.placeholderText}>{attribute.Value}</Text>
+      <TextInput
+        style={styles.placeholderText}
+        value={attribute.Value}
+        editable={!control.Readonly}
+        onChangeText={editField}
+      />
     </View>
   );
 }
