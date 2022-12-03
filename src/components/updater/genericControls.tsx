@@ -27,7 +27,7 @@ interface Props {
 
 interface ControlProps {
   control: UpdaterControl;
-  ticket: TicketResponse;
+  ticketId: number;
 }
 
 // This should deal with how to represent any attribute to the user
@@ -48,9 +48,9 @@ export function UniversalControl(props: Props) {
   switch (control.Type) {
     case "BIGINT":
     case "FILE":
-      return <TableField control={control} ticket={ticket} />;
+      return <TableField control={control} ticketId={ticket.Id} />;
     default:
-      return <TextField control={control} ticket={ticket} />;
+      return <TextField control={control} ticketId={ticket.Id} />;
   }
 }
 
@@ -65,13 +65,19 @@ function LoaderPlaceholder() {
 }
 
 function TextField(props: ControlProps) {
-  const { control, ticket } = props;
+  const { control, ticketId } = props;
   const styles = themeAwareStyles().updater;
-  const attribute = findAttributeForControl(control, ticket.Attributes)!;
+  const attribute = useSelector(
+    (state: RootState) =>
+      findAttributeForControl(
+        control,
+        state.ticketStorage[ticketId].Attributes
+      )!
+  );
   const dispatch = useDispatch();
   const editField = useCallback(
     (value: any) => {
-      dispatch(editTicketField(ticket, attribute, value));
+      dispatch(editTicketField(ticketId, attribute, value));
     },
     [dispatch]
   );
@@ -90,9 +96,11 @@ function TextField(props: ControlProps) {
 }
 
 function TableField(props: ControlProps) {
-  const { control, ticket } = props;
+  const { control, ticketId } = props;
   const styles = themeAwareStyles().updater;
-  const link = findLink(ticket, control);
+  const link = useSelector((state: RootState) =>
+    findLink(state.ticketStorage[ticketId], control)
+  );
   const table = useSelector(
     (state: RootState) => state.tableStorage[link!.ParentTable]
   );

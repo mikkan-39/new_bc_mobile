@@ -120,14 +120,14 @@ export const clearAsyncStorage = () => {
 };
 
 export const editTicketField = (
-  ticket: TicketResponse,
+  ticketId: number,
   attribute: TicketAttribute,
   value: any
 ) => {
   return {
     type: types.EDIT_TICKET_FIELD,
     payload: {
-      ticket,
+      ticketId,
       attribute,
       value,
     } as TicketEditActionPayload,

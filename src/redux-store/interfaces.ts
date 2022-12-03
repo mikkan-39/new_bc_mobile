@@ -99,7 +99,7 @@ export interface TicketResponse {
 }
 
 export interface TicketEditActionPayload {
-  ticket: TicketResponse;
+  ticketId: number;
   attribute: TicketAttribute;
   value: any;
 }
