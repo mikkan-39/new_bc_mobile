@@ -1,3 +1,4 @@
+// table as seen in config
 export interface Tableinconfig {
   Field: string;
   Table: string; //| tbl...
@@ -33,10 +34,12 @@ export interface Androidconfig {
   Tabs: Tableinconfig[];
 }
 
+// for possible future conversions
 export const androidConfigConverter = (config: any) => {
   return config as Androidconfig;
 };
 
+// Item as seen in table
 export interface TableTicket {
   Key: string;
   Left: string;
@@ -49,6 +52,7 @@ export interface TicketForRequest extends TableTicket {
   ParentTable: Tableinconfig;
 }
 
+// table after fetching
 export interface TableResponse {
   Field: string;
   Review: string;
@@ -84,6 +88,7 @@ export interface TicketAttribute {
   Value: any;
 }
 
+// link contains both the selected option and table name
 export interface TicketLink {
   Id: number;
   Name: string; // internal
@@ -91,6 +96,7 @@ export interface TicketLink {
   Value: string; // russian
 }
 
+// ticket afterfetching
 export interface TicketResponse {
   Attributes: TicketAttribute[];
   Id: number;
