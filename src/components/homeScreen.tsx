@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect } from "react";
-import { themeAwareStyles } from "../configs/themeAwareHook";
+import { useStyles } from "../hooks/themeAwareHook";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux-store/store";
@@ -12,7 +12,7 @@ interface Props {
 const Tab = createBottomTabNavigator();
 
 export default function HomeScreen(props: Props) {
-  const styles = themeAwareStyles();
+  const styles = useStyles();
   const config = useSelector((state: RootState) => state.interfaceConfig);
 
   useEffect(() => {

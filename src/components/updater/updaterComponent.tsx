@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { ScrollView } from "react-native";
 import reactotron from "reactotron-react-native";
-import { themeAwareStyles } from "../../configs/themeAwareHook";
+import { useStyles } from "../../hooks/themeAwareHook";
 import { StyleStorage } from "../../configs/themesConstants";
 import { UniversalControl } from "./genericControls";
 
@@ -12,7 +12,7 @@ interface Props {
 
 function UpdaterComponent(props: Props) {
   const { ticketId, editor } = props;
-  const styleStorage = themeAwareStyles();
+  const styleStorage = useStyles();
   const styles = styleStorage.updater as StyleStorage;
 
   const generateInputs = useCallback(() => {

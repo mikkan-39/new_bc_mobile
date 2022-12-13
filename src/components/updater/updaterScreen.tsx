@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import reactotron from "reactotron-react-native";
-import { themeAwareStyles } from "../../configs/themeAwareHook";
+import { useStyles } from "../../hooks/themeAwareHook";
 import {
   fetchTicketRequest,
   fetchTicketTablesRequest,
@@ -18,7 +18,7 @@ interface Props {
 }
 
 export default function UpdaterScreen(props: Props) {
-  const styles = themeAwareStyles();
+  const styles = useStyles();
   const config = useSelector((state: RootState) => state.interfaceConfig);
   const dispatch = useDispatch();
   const ticketFromProps = props.route.params.ticket as TicketForRequest;

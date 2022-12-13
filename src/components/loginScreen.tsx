@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { loginRequest } from "../redux-store/actions";
 import { useDispatch } from "react-redux";
-import { themeAwareStyles } from "../configs/themeAwareHook";
+import { useStyles } from "../hooks/themeAwareHook";
 import LoginComponent from "./loginComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux-store/store";
@@ -17,7 +17,7 @@ export default function LoginScreen(props: Props) {
     (creds: Logincreds) => dispatch(loginRequest(creds)),
     [dispatch]
   );
-  const styles = themeAwareStyles();
+  const styles = useStyles();
   const { authorized, configured, error } = useSelector(
     (state: RootState) => state
   );

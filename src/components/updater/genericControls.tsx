@@ -8,7 +8,7 @@ import {
   LOADING_PLACEHOLDER,
   NO_SELECTION_PLACEHOLDER,
 } from "../../configs/errorMessages";
-import { themeAwareStyles } from "../../configs/themeAwareHook";
+import { useStyles } from "../../hooks/themeAwareHook";
 import { editTicketField } from "../../redux-store/actions";
 import { RootState } from "../../redux-store/store";
 import { findAttributeForControl, findLink } from "./helpers";
@@ -49,7 +49,7 @@ export function UniversalControl(props: Props) {
 
 // For tables which have not been loaded yet
 function LoaderPlaceholder() {
-  const styles = themeAwareStyles().updater;
+  const styles = useStyles().updater;
   return (
     <View style={styles.loaderContainer}>
       <Text style={styles.placeholderText}>{LOADING_PLACEHOLDER}</Text>
@@ -59,7 +59,7 @@ function LoaderPlaceholder() {
 
 function TextField(props: ControlProps) {
   const { control, ticketId } = props;
-  const styles = themeAwareStyles().updater;
+  const styles = useStyles().updater;
   const attribute = useSelector(
     (state: RootState) =>
       findAttributeForControl(
@@ -90,7 +90,7 @@ function TextField(props: ControlProps) {
 
 function TableField(props: ControlProps) {
   const { control, ticketId } = props;
-  const styles = themeAwareStyles().updater;
+  const styles = useStyles().updater;
   const link = useSelector((state: RootState) =>
     findLink(state.ticketStorage[ticketId], control)
   );

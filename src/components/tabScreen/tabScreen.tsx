@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { useEffect } from "react";
-import { themeAwareStyles } from "../../configs/themeAwareHook";
+import { useStyles } from "../../hooks/themeAwareHook";
 import TabComponent from "./tabComponent";
 import { useDispatch } from "react-redux";
 import { fetchTableRequest } from "../../redux-store/actions";
@@ -19,7 +19,7 @@ interface Props {
 
 export default function TabScreen(props: Props) {
   const parentTable = props.route!.params.parentTable;
-  const styles = themeAwareStyles();
+  const styles = useStyles();
   const dispatch = useDispatch();
   const tableFromStorage = useSelector(
     (state: RootState) => state.tableStorage[parentTable.Table]

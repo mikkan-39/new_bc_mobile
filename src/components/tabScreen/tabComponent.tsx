@@ -1,6 +1,6 @@
 import { ScrollView, View } from "react-native";
 import { ReactNode } from "react";
-import { themeAwareStyles } from "../../configs/themeAwareHook";
+import { useStyles } from "../../hooks/themeAwareHook";
 import TableElement from "./tableElement";
 import reactotron from "reactotron-react-native";
 
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function TabComponent(props: Props) {
-  const styles = themeAwareStyles();
+  const styles = useStyles();
 
   const generateTickets = () => {
     let tabs: ReactNode[] = [];

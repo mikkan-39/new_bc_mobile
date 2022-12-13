@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useCallback } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
-import { themeAwareStyles } from "../../configs/themeAwareHook";
+import { useStyles } from "../../hooks/themeAwareHook";
 import { StyleStorage } from "../../configs/themesConstants";
 import { RootState } from "../../redux-store/store";
 
@@ -16,7 +16,7 @@ type RootStackParamList = {
 };
 
 export default function TableElement(props: Props) {
-  const styleStorage = themeAwareStyles();
+  const styleStorage = useStyles();
   const styles = styleStorage.tabScreen.tableElement as StyleStorage;
   let ticket = props.element;
   const ticketIsLoaded = Boolean(

@@ -22,7 +22,7 @@ describe("Requests tests", () => {
         Review: "rvTaskList",
         Right: "TaskResponsible.Name",
         Table: "tblTask",
-      });
+      } as unknown as Tableinconfig);
     }).not.toThrowError();
   });
 });

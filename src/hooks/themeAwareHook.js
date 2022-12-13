@@ -1,9 +1,9 @@
 import React from "react";
-import { useTheme } from "./themeProvider";
-import { createStyles } from "./styles";
+import { useTheme } from "../configs/themeProvider";
+import { createStyles } from "../configs/styles";
 
 // Creating our custom hook
-const themeAwareStyles = () => {
+const useStyles = () => {
   // Get current theme from our theme context
   const { theme } = useTheme();
 
@@ -18,4 +18,4 @@ const themeAwareStyles = () => {
   return ThemeAware;
 };
 
-export { themeAwareStyles };
+export { useStyles };

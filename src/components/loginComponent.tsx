@@ -10,7 +10,7 @@ import {
   StyleProp,
   ImageStyle,
 } from "react-native";
-import { themeAwareStyles } from "../configs/themeAwareHook";
+import { useStyles } from "../hooks/themeAwareHook";
 const logo = require("../assets/logo.png");
 
 interface Props {
@@ -18,7 +18,7 @@ interface Props {
 }
 
 export default function LoginComponent(props: Props) {
-  const styles = themeAwareStyles();
+  const styles = useStyles();
   const passInput = useRef<TextInput>(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
