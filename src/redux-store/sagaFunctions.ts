@@ -10,7 +10,6 @@ import {
   getLinksFromStorage,
   LinkStorage,
 } from "./storage";
-import { RootState } from "./store";
 
 const call: any = Effects.call; // for TS
 

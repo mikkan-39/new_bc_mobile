@@ -8,7 +8,6 @@ import {
   fetchTicketRequest,
   fetchTicketTablesRequest,
 } from "../../redux-store/actions";
-import { RootState } from "../../redux-store/store";
 import { generateNecessaryLinks } from "./helpers";
 import UpdaterComponent from "./updaterComponent";
 

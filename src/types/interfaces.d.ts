@@ -2,6 +2,23 @@
 // Definitions by: mikkan-39
 
 declare global {
+  interface TableStorage {
+    [key: string]: TableResponse;
+  }
+
+  interface TicketStorage {
+    [key: string]: TicketResponse;
+  }
+
+  interface RootState {
+    error: null | Error;
+    authorized: boolean;
+    configured: boolean;
+    interfaceConfig: Androidconfig;
+    tableStorage: TableStorage;
+    ticketStorage: TicketStorage;
+  }
+
   // table as seen in config
   interface Tableinconfig {
     Field: string;

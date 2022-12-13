@@ -2,7 +2,6 @@ import React, { ReactNode, useEffect } from "react";
 import { useStyles } from "../hooks/themeAwareHook";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux-store/store";
 import TabScreen from "./tabScreen/tabScreen";
 
 interface Props {

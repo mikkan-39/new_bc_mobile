@@ -3,21 +3,14 @@ import reactotron from "reactotron-react-native";
 import * as types from "./constants";
 import ticketEditorReducer from "./ticketEditorReducer";
 
-export interface TableStorage {
-  [key: string]: TableResponse;
-}
-
-export interface TicketStorage {
-  [key: string]: TicketResponse;
-}
 export const initialState = {
-  error: null as null | Error,
+  error: null,
   authorized: false,
   configured: false,
-  interfaceConfig: {} as Androidconfig,
-  tableStorage: {} as TableStorage,
-  ticketStorage: {} as TicketStorage,
-};
+  interfaceConfig: {},
+  tableStorage: {},
+  ticketStorage: {},
+} as RootState;
 
 export default (state = initialState, action: PayloadAction) => {
   switch (action.type) {

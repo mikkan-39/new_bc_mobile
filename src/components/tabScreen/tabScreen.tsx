@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { fetchTableRequest } from "../../redux-store/actions";
 import reactotron from "reactotron-react-native";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux-store/store";
 
 interface Props {
   navigation?: any;

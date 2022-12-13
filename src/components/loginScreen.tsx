@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { useStyles } from "../hooks/themeAwareHook";
 import LoginComponent from "./loginComponent";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux-store/store";
 import { Alert } from "react-native";
 
 interface Props {

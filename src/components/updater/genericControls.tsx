@@ -9,8 +9,8 @@ import {
   NO_SELECTION_PLACEHOLDER,
 } from "../../configs/errorMessages";
 import { useStyles } from "../../hooks/themeAwareHook";
+import { useAttribute } from "../../hooks/ticketHooks";
 import { editTicketField } from "../../redux-store/actions";
-import { RootState } from "../../redux-store/store";
 import { findAttributeForControl, findLink } from "./helpers";
 
 interface Props {
@@ -59,21 +59,8 @@ function LoaderPlaceholder() {
 
 function TextField(props: ControlProps) {
   const { control, ticketId } = props;
+  const { attribute, editAttribute } = useAttribute(control, ticketId);
   const styles = useStyles().updater;
-  const attribute = useSelector(
-    (state: RootState) =>
-      findAttributeForControl(
-        control,
-        state.ticketStorage[ticketId].Attributes
-      )!
-  );
-  const dispatch = useDispatch();
-  const editField = useCallback(
-    (value: any) => {
-      dispatch(editTicketField(ticketId, attribute, value));
-    },
-    [dispatch]
-  );
   stripHTML(attribute.Value);
   return (
     <View style={styles.controlContainer}>
@@ -82,7 +69,7 @@ function TextField(props: ControlProps) {
         style={styles.placeholderText}
         value={attribute.Value}
         editable={!control.Readonly}
-        onChangeText={editField}
+        onChangeText={editAttribute}
       />
     </View>
   );
