@@ -1,6 +1,5 @@
 import React, { ReactNode, useEffect } from "react";
 import { themeAwareStyles } from "../configs/themeAwareHook";
-import reactotron from "reactotron-react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux-store/store";

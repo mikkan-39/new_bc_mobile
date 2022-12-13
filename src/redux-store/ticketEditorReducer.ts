@@ -1,6 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { TicketStorage } from "./reducers";
-import { TicketAttribute, TicketEditActionPayload } from "./interfaces";
 import reactotron from "reactotron-react-native";
 
 export default function (ticketStorage: TicketStorage, action: PayloadAction) {

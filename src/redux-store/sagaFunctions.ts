@@ -4,14 +4,6 @@ import * as actions from "./actions";
 import * as api from "../api";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
-import reactotron from "reactotron-react-native";
-import {
-  Androidconfig,
-  androidConfigConverter,
-  TableResponse,
-  TicketLink,
-  TicketResponse,
-} from "./interfaces";
 import {
   clearStorage,
   ensureLinkInStorage,

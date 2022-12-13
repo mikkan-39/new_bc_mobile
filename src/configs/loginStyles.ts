@@ -1,5 +1,3 @@
-import React from "react";
-import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 import { StyleStorage, Theme } from "./themesConstants";
 
 export const loginStyles = (theme: Theme): StyleStorage => {

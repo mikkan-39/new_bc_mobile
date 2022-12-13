@@ -1,7 +1,6 @@
-import { StyleSheet } from "react-native";
 import { loginStyles } from "./loginStyles";
 import { tabStyles } from "./tabStyles";
-import { StyleStorage, Theme } from "./themesConstants";
+import { Theme } from "./themesConstants";
 import { updaterStyles } from "./updaterStyles";
 
 export const createStyles = (theme: Theme) => {

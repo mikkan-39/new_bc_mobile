@@ -10,15 +10,8 @@ import {
 } from "../../configs/errorMessages";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
 import { editTicketField } from "../../redux-store/actions";
-import {
-  stripHTML,
-  TicketAttribute,
-  TicketResponse,
-  UpdaterControl,
-} from "../../redux-store/interfaces";
 import { RootState } from "../../redux-store/store";
 import { findAttributeForControl, findLink } from "./helpers";
-import Feather from "react-native-vector-icons/Feather";
 
 interface Props {
   control: UpdaterControl;

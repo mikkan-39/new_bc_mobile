@@ -1,10 +1,5 @@
 import { ScrollView, View } from "react-native";
 import { ReactNode } from "react";
-import {
-  Tableinconfig,
-  TableResponse,
-  TicketForRequest,
-} from "../../redux-store/interfaces";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
 import TableElement from "./tableElement";
 import reactotron from "reactotron-react-native";

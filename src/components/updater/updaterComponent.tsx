@@ -3,7 +3,6 @@ import { ScrollView } from "react-native";
 import reactotron from "reactotron-react-native";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
 import { StyleStorage } from "../../configs/themesConstants";
-import { Editorinconfig } from "../../redux-store/interfaces";
 import { UniversalControl } from "./genericControls";
 
 interface Props {

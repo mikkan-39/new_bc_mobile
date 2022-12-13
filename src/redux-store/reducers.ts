@@ -1,7 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import reactotron from "reactotron-react-native";
 import * as types from "./constants";
-import { Androidconfig, TableResponse, TicketResponse } from "./interfaces";
 import ticketEditorReducer from "./ticketEditorReducer";
 
 export interface TableStorage {

@@ -1,6 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import reactotron from "reactotron-react-native";
-import { TicketLink } from "./interfaces";
 
 export interface LinkStorage {
   [name: string]: string;

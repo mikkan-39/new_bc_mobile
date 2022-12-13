@@ -5,7 +5,6 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
 import { themeAwareStyles } from "../../configs/themeAwareHook";
 import { StyleStorage } from "../../configs/themesConstants";
-import { stripHTML, TicketForRequest } from "../../redux-store/interfaces";
 import { RootState } from "../../redux-store/store";
 
 interface Props {

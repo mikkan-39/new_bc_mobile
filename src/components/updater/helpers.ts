@@ -1,10 +1,3 @@
-import {
-  Editorinconfig,
-  TicketAttribute,
-  TicketResponse,
-  UpdaterControl,
-} from "../../redux-store/interfaces";
-
 // Checks which tables are needed for rendering editor and have not yet been fetched
 export const generateNecessaryLinks = (
   ticket: TicketResponse,

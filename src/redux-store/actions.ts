@@ -1,16 +1,4 @@
 import * as types from "./constants";
-import {
-  Androidconfig,
-  Logincreds,
-  Tableinconfig,
-  TableResponse,
-  TableTicket,
-  TicketAttribute,
-  TicketEditActionPayload,
-  TicketForRequest,
-  TicketLink,
-  TicketResponse,
-} from "./interfaces";
 
 export const devAppInit = () => {
   return {
