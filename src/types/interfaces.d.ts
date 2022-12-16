@@ -81,12 +81,6 @@ declare global {
     Set: TableTicket[];
   }
 
-  const stripHTML = (str: string): string => {
-    if (str === undefined) return "---";
-    var he = require("he"); // HTML decoder
-    return he.decode(str.replace(/<[^>]+>/g, "")).trim();
-  };
-
   type Logincreds = {
     username: string;
     password: string;

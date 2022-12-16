@@ -5,6 +5,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
 import { useStyles } from "../../hooks/themeAwareHook";
 import { StyleStorage } from "../../configs/themesConstants";
+import { stripHTML } from "../updater/helpers";
 
 interface Props {
   element: TicketForRequest; // MUST have ParentTable
