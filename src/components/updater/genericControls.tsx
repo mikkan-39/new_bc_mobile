@@ -74,6 +74,7 @@ function TableField(props: ControlProps) {
   const { table, option, selectOption } = useLink(control, ticketId);
   const styles = useStyles().updater;
   if (!table) return <LoaderPlaceholder />;
+  if (!table.Set?.length) return null;
 
   type Pick = {
     label: string;
@@ -99,14 +100,14 @@ function TableField(props: ControlProps) {
       <Text style={styles.labelText}>{control.Label}</Text>
       <RNPickerSelect
         style={{
-          inputIOS: styles.placeholderText,
-          inputAndroid: styles.placeholderText,
+          inputIOS: styles.pickerContainer,
+          inputAndroid: styles.pickerContainer,
         }}
         onValueChange={selectOption}
         items={pickerItems}
         value={option?.Key}
         placeholder={placeholderObject}
-        disabled={!table.Set?.length}
+        doneText={"ОК"}
       />
     </View>
   );

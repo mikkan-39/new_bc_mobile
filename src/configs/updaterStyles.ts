@@ -37,5 +37,15 @@ export const updaterStyles = (theme: Theme): StyleStorage => {
       fontSize: theme.fontSize,
       color: theme.textColor,
     },
+    pickerContainer: {
+      fontSize: theme.fontSize,
+      color: theme.textColor,
+      padding: 10,
+      borderRadius: theme.rounding - 10,
+      borderColor: theme.surfaceColor,
+      borderLeftColor: theme.accentColor,
+      borderBottomColor: theme.accentColor,
+      borderWidth: 5,
+    },
   };
 };
