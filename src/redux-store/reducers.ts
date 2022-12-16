@@ -1,7 +1,7 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import reactotron from "reactotron-react-native";
 import * as types from "./constants";
-import ticketEditorReducer from "./ticketEditorReducer";
+import { ticketFieldReducer, ticketTableReducer } from "./ticketEditorReducer";
 
 export const initialState = {
   error: null,
@@ -72,7 +72,13 @@ export default (state = initialState, action: PayloadAction) => {
     case types.EDIT_TICKET_FIELD:
       return {
         ...state,
-        ticketStorage: ticketEditorReducer(state.ticketStorage, action),
+        ticketStorage: ticketFieldReducer(state.ticketStorage, action),
+      };
+
+    case types.EDIT_TICKET_TABLE:
+      return {
+        ...state,
+        ticketStorage: ticketTableReducer(state, action),
       };
 
     default:

@@ -39,7 +39,7 @@ export function useLink(control: UpdaterControl, ticketId: number) {
   );
   const dispatch = useDispatch();
   const selectOption = (pickId: any) => {
-    dispatch(editTicketTable(ticketId, table, pickId));
+    dispatch(editTicketTable(ticketId, link!, pickId));
   };
 
   if (!table) return { table, option: undefined, selectOption };

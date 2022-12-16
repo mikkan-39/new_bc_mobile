@@ -124,6 +124,12 @@ declare global {
     attribute: TicketAttribute;
     value: any;
   }
+
+  interface TicketSetTableActionPayload {
+    ticketId: number;
+    link: TicketLink;
+    optionKey: any;
+  }
 }
 
 export {};

@@ -1,8 +1,11 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { TicketStorage } from "./reducers";
 import reactotron from "reactotron-react-native";
+import { useTicket } from "../hooks/ticketHooks";
 
-export default function (ticketStorage: TicketStorage, action: PayloadAction) {
+export function ticketFieldReducer(
+  ticketStorage: TicketStorage,
+  action: PayloadAction
+) {
   const payload = action.payload as unknown as TicketEditActionPayload;
   var { ticketId, attribute, value } = payload;
   const ticket = ticketStorage[ticketId];
@@ -21,4 +24,17 @@ export default function (ticketStorage: TicketStorage, action: PayloadAction) {
   }
 
   return ticketStorage;
+}
+
+export function ticketTableReducer(state: RootState, action: PayloadAction) {
+  const payload = action.payload as unknown as TicketSetTableActionPayload;
+  var { ticketId, link, optionKey } = payload;
+  const ticket = state.ticketStorage[ticketId];
+
+  for (const index of ticket.Links.keys()) {
+    const lynk = ticket.Links[index];
+    if (lynk.Name == link.Name) lynk.Id = optionKey;
+  }
+
+  return state.ticketStorage;
 }

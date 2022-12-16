@@ -124,15 +124,15 @@ export const editTicketField = (
 
 export const editTicketTable = (
   ticketId: number,
-  table: TableResponse,
+  link: TicketLink,
   optionKey: any
 ) => {
   return {
     type: types.EDIT_TICKET_TABLE,
     payload: {
       ticketId,
-      table,
+      link,
       optionKey,
-    },
+    } as TicketSetTableActionPayload,
   };
 };
