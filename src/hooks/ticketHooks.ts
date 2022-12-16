@@ -1,8 +1,15 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { findAttributeForControl } from "../components/updater/helpers";
+import {
+  findAttributeForControl,
+  findLink,
+} from "../components/updater/helpers";
 import { editTicketField } from "../redux-store/actions";
+
+export function useTicket(ticketId: number) {
+  return useSelector((state: RootState) => state.ticketStorage[ticketId]);
+}
 
 export function useAttribute(control: UpdaterControl, ticketId: number) {
   const attribute = useSelector(
@@ -21,4 +28,23 @@ export function useAttribute(control: UpdaterControl, ticketId: number) {
   );
 
   return { attribute, editAttribute };
+}
+
+export function useLink(control: UpdaterControl, ticketId: number) {
+  const link = useSelector((state: RootState) =>
+    findLink(state.ticketStorage[ticketId], control)
+  );
+  const table = useSelector(
+    (state: RootState) => state.tableStorage[link!.ParentTable]
+  );
+  const dispatch = useDispatch();
+  const selectOption = (pick: { label: string; value: any }) => {};
+
+  if (!table) return { table, option: undefined, selectOption };
+
+  var option;
+  for (const opt of table.Set) {
+    if (opt.Key == link!.Id.toString()) option = opt;
+  }
+  return { table, option, selectOption };
 }

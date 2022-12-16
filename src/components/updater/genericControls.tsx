@@ -1,17 +1,14 @@
-import { Fragment, useCallback, useEffect } from "react";
-import { Text, TextInput, View } from "react-native";
-import { Fumi } from "react-native-textinput-effects";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { Pressable, Text, TextInput, View } from "react-native";
 import reactotron from "reactotron-react-native";
 import {
   LOADING_PLACEHOLDER,
   NO_SELECTION_PLACEHOLDER,
 } from "../../configs/errorMessages";
 import { useStyles } from "../../hooks/themeAwareHook";
-import { useAttribute } from "../../hooks/ticketHooks";
-import { editTicketField } from "../../redux-store/actions";
-import { findAttributeForControl, findLink } from "./helpers";
+import { useAttribute, useLink, useTicket } from "../../hooks/ticketHooks";
+import { stripHTML } from "./helpers";
+import RNPickerSelect from "react-native-picker-select";
+import { useDispatch } from "react-redux";
 
 interface Props {
   control: UpdaterControl;
@@ -26,10 +23,7 @@ interface ControlProps {
 // This should deal with how to represent any attribute to the user
 export function UniversalControl(props: Props) {
   const { control, ticketId } = props;
-  const ticket = useSelector(
-    (state: RootState) => state.ticketStorage[ticketId]
-  );
-
+  const ticket = useTicket(ticketId);
   if (!ticket) return <LoaderPlaceholder />;
 
   // This is some lame prop drilling
@@ -77,24 +71,50 @@ function TextField(props: ControlProps) {
 
 function TableField(props: ControlProps) {
   const { control, ticketId } = props;
+  const { table, option, selectOption } = useLink(control, ticketId);
   const styles = useStyles().updater;
-  const link = useSelector((state: RootState) =>
-    findLink(state.ticketStorage[ticketId], control)
-  );
-  const table = useSelector(
-    (state: RootState) => state.tableStorage[link!.ParentTable]
-  );
-  if (!table) return LoaderPlaceholder();
+  if (!table) return <LoaderPlaceholder />;
 
-  var label = NO_SELECTION_PLACEHOLDER;
-  for (const option of table.Set) {
-    if (option.Key == link!.Id.toString()) label = option.Name;
-  }
+  type Pick = {
+    label: string;
+    value: any;
+  };
 
+  const pickerItems = table.Set.map((pick) => {
+    return { label: pick.Name, value: pick.Key };
+  });
+
+  var placeholderObject: Pick | {} = {
+    label: NO_SELECTION_PLACEHOLDER,
+    value: null,
+  };
+  if (control.Required) placeholderObject = {};
+
+  // I already hate RNPickerSelect so much.
+  // TODO: yeet this code.
+  // TODO: really.
+  // FIXME: I'm a teapot.
   return (
     <View style={styles.controlContainer}>
       <Text style={styles.labelText}>{control.Label}</Text>
-      <Text style={styles.placeholderText}>{label}</Text>
+      <RNPickerSelect
+        style={{
+          inputIOS: styles.placeholderText,
+          inputAndroid: styles.placeholderText,
+        }}
+        onValueChange={selectOption}
+        items={pickerItems}
+        value={option?.Key}
+        placeholder={placeholderObject}
+        disabled={!table.Set?.length}
+      />
     </View>
   );
+  // const callDropdown = () => {}
+  // return (
+  //   <Pressable style={styles.controlContainer} onPress={callDropdown}>
+  //     <Text style={styles.labelText}>{control.Label}</Text>
+  //     <Text style={styles.placeholderText}>{label}</Text>
+  //   </Pressable>
+  // );
 }

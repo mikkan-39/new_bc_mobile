@@ -10,6 +10,7 @@ import {
   getLinksFromStorage,
   LinkStorage,
 } from "./storage";
+import reactotron from "reactotron-react-native";
 
 const call: any = Effects.call; // for TS
 
@@ -40,7 +41,7 @@ export function* login(action: PayloadAction) {
 export function* getMobileConfig(action: PayloadAction) {
   try {
     const configResponse: AxiosResponse = yield call(api.getConfig);
-    const config = androidConfigConverter(configResponse.data);
+    const config = configResponse.data as Androidconfig;
     yield put(actions.fetchConfigSuccess(config));
   } catch (e: any) {
     yield put(actions.fetchConfigFailed(e));
