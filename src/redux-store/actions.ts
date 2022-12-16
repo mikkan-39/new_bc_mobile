@@ -121,3 +121,18 @@ export const editTicketField = (
     } as TicketEditActionPayload,
   };
 };
+
+export const editTicketTable = (
+  ticketId: number,
+  table: TableResponse,
+  optionKey: any
+) => {
+  return {
+    type: types.EDIT_TICKET_TABLE,
+    payload: {
+      ticketId,
+      table,
+      optionKey,
+    },
+  };
+};

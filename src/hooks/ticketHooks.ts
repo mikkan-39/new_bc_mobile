@@ -5,7 +5,7 @@ import {
   findAttributeForControl,
   findLink,
 } from "../components/updater/helpers";
-import { editTicketField } from "../redux-store/actions";
+import { editTicketField, editTicketTable } from "../redux-store/actions";
 
 export function useTicket(ticketId: number) {
   return useSelector((state: RootState) => state.ticketStorage[ticketId]);
@@ -38,10 +38,11 @@ export function useLink(control: UpdaterControl, ticketId: number) {
     (state: RootState) => state.tableStorage[link!.ParentTable]
   );
   const dispatch = useDispatch();
-  const selectOption = (pick: { label: string; value: any }) => {};
+  const selectOption = (pickId: any) => {
+    dispatch(editTicketTable(ticketId, table, pickId));
+  };
 
   if (!table) return { table, option: undefined, selectOption };
-
   var option;
   for (const opt of table.Set) {
     if (opt.Key == link!.Id.toString()) option = opt;
